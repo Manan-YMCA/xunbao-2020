@@ -1,1 +1,1 @@
-web: gunicorn cncweb.wsgi
+web: gunicorn xunbao2020.wsgi
