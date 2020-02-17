@@ -2,13 +2,17 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import Uppericons from './uppericons'
 import Lowericons from './lowericons'
-import Mobile from './Mobile'
+import MobileUpper from './UpperMobile'
+import LowerMobile from './LowerMobile'
 const MainLayout = () => {
     return (
 
 
         <div className = "main-layout" >
         <br />
+        <div>
+           < MobileUpper />
+        </div>
         <div class = "row" >
         <div class = "col-md-2" >
         <Uppericons / >
@@ -36,8 +40,8 @@ const MainLayout = () => {
         < div class = "col-md-2" >
         <Lowericons />
         </div>
-        <div>
-             <Mobile />
+        < div class = "col-md-2" >
+        <LowerMobile />
         </div>
         
 
