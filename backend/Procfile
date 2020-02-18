@@ -2,5 +2,5 @@ web: gunicorn xunbao2020.wsgi
 heroku addons:create heroku-postgresql:hobby-dev
 heroku config -s | grep DATABASE_URL
 heroku config:set DISABLE_COLLECTSTATIC=1
-heroku run python manage.py makemigrations
-heroku run python manage.py migrate
+web: python manage.py makemigrations
+web: python manage.py migrate
