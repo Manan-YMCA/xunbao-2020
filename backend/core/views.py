@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import update_session_auth_hash
 from social_django.models import UserSocialAuth
 
@@ -78,7 +79,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
 
     def get_permissions(self):
-        permission_classes = [IsAdminUser, ]
+        permission_classes = [IsAdminUser, IsAuthenticated]
         return [permission() for permission in permission_classes]
 
 
@@ -87,7 +88,7 @@ class UserProfileAPIViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
 
     def get_permissions(self):
-        permission_classes = [IsAdminUser, ]
+        permission_classes = [IsAdminUser, IsAuthenticated]
         return [permission() for permission in permission_classes]
 
 
@@ -96,7 +97,7 @@ class QuestionAPIView(viewsets.ModelViewSet):
     queryset = Question.objects.all()
 
     def get_permissions(self):
-        permission_classes = [IsAdminUser, ]
+        permission_classes = [IsAdminUser, IsAuthenticated]
         return [permission() for permission in permission_classes]
 
 
@@ -105,5 +106,5 @@ class SubmissionAPIView(viewsets.ModelViewSet):
     queryset = Submission.objects.all()
 
     def get_permissions(self):
-        permission_classes = [IsAdminUser, ]
+        permission_classes = [IsAdminUser, IsAuthenticated]
         return [permission() for permission in permission_classes]
