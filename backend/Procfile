@@ -1,2 +1,2 @@
-web: gunicorn xunbao2020.wsgi
 release: python manage.py migrate
+web: gunicorn xunbao2020.wsgi --log-file -
