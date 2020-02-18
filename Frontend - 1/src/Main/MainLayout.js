@@ -4,6 +4,10 @@ import Uppericons from './uppericons'
 import Lowericons from './lowericons'
 import MobileUpper from './UpperMobile'
 import LowerMobile from './LowerMobile'
+
+
+
+import Rules from './Rules'
 const MainLayout = () => {
     return (
 
@@ -27,7 +31,8 @@ const MainLayout = () => {
         
          <img src = {
             require('../icons/on_li_tr_hnt.png')}className = "xunbaoText" / >
-        <a href="https://www.w3schools.com">
+                
+        <a href="javascript:void(0);" onClick={() => window.location.href = "./Rules"}>
          <img src = {
             require('../icons/play gold.png')}className = "startButton" / >
         </a>

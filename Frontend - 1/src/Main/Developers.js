@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import Uppericons from './uppericons'
 import Lowericons from './lowericons'
-import Mobile from './Mobile'
+import LowerMobile from './LowerMobile'
 const Developers = () => {
     return (
 
@@ -23,7 +23,7 @@ const Developers = () => {
         <Lowericons />
         </div>
         <div>
-             <Mobile />
+             <LowerMobile />
         </div>
         
 
@@ -31,11 +31,11 @@ const Developers = () => {
 </div>
         
         
-        </div>
+     
         
         
         
             );
 }
 
-export default MainLayout;
+export default Developers;

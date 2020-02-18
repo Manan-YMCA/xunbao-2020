@@ -61,8 +61,8 @@ img {
 
 .xunbaoText {
   margin-top: -13px;
-  margin-left: 188px;
-  height: 60px;
+  margin-left: 205px;
+  height: 65px;
 }
 
 .startButton {
@@ -80,26 +80,27 @@ img {
 .col4 {
   float: left;
   width: 25%;
-  margin-left: 1rem;
-  margin-top: 1rem;
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
 }
 
 
 
 .col2 {
-  margin-left: 3rem;
+  margin-left: 2.5rem;
   ;
 }
 
 .col3 {
   float: left;
   width: 50%;
-  margin-top: -4rem;
+  margin-top: -6rem;
   padding-left: 0rem;
+
 }
 
 .col1 {
-  margin-left: 11.5rem;
+  margin-left: 12.5rem;
 }
 
 @media only screen and (max-width: 500px) {
@@ -120,30 +121,31 @@ img {
     max-width: 95%;
     max-height: 50%;
     margin-left: 1.3rem;
-    margin-top: 5rem;
-    height: 8rem;
+    margin-top: 3rem;
+    height: 7rem;
 
   }
 
   .underlineIcon {
     max-width: 90%;
-    max-height: 8%;
+    max-height: 5%;
     margin-left: 1.8rem;
     margin-top: -0.5rem;
   }
 
   .xunbaoText {
     max-width: 80%;
-    max-height: 8%;
+    max-height: 7%;
     margin-left: 3rem;
-    margin-top: 1rem;
+    margin-top: 0rem;
 
   }
 
   .startButton {
     max-width: 33%;
     margin-left: 8.2rem;
-    max-height: 24%;
+    max-height: 22%;
+
   }
 
   .hideMobile {

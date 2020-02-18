@@ -10,14 +10,14 @@ const Uppericons = () => {
         <div>
         <div class="row">
         <div class="col-sm-12" className="hide">
-        <a href="">
+        <a href="javascript:void(0);" onClick={() => window.location.href = "./Developers"}>
         <img src={require('../icons/dev gold.png')} className="iconSize leftIcons" />
         </a>
         </div>
         </div>
         <div class="row">
         <div class="col-sm-12" className="hide">
-        <a href="https://www.w3schools.com">
+        <a href="https://www.instagram.com/manantechnosurge/">
         <img src={require('../icons/call gold.png')} className="iconSize leftIcons icon2" />
         </a>
         </div>
