@@ -15,12 +15,12 @@ import django_heroku
 # import psycopg2
 # import dj_database_url
 #
-# # DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 # DATABASE_URL = os.environ['DATABASE_URL']
-#
 # conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-#
-# # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -33,7 +33,7 @@ SECRET_KEY = '$%6u%b02#8w5%kj^uuvft)u-i6bhhgusgk)3!5xna$nejgmvot'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://mananxunbao.herokuapp.com/', ]
 
 
 # Application definition

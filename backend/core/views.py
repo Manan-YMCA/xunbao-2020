@@ -21,19 +21,19 @@ def login(request):
 
 
 def home(request):
-    user = request.user
-
-    try:
-        facebook = user.social_auth.get(provider='facebook')
-        picture = facebook.extra_data.get('picture')
-        picturedata = picture.get('data')
-        pictureurl = picturedata.get('url')
-        userprofile,created = UserProfile.objects.get_or_create(
-            user=user,
-        )
-
-    except:
-        pass
+    # user = request.user
+    #
+    # try:
+    #     facebook = user.social_auth.get(provider='facebook')
+    #     picture = facebook.extra_data.get('picture')
+    #     picturedata = picture.get('data')
+    #     pictureurl = picturedata.get('url')
+    #     userprofile,created = UserProfile.objects.get_or_create(
+    #         user=user,
+    #     )
+    #
+    # except:
+    #     pass
 
     return redirect('api/')
 
