@@ -2,9 +2,9 @@ from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework import viewsets
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, AllowAny
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import update_session_auth_hash
 from social_django.models import UserSocialAuth
@@ -15,30 +15,27 @@ from .forms import AnswerForm
 # Create your views here.
 
 
-# @login_required
-def Home(request):
-    return render(request, 'core/home.html')
-
-
 def login(request):
     logout(request)
     return render(request, 'login.html')
 
 
-@login_required
 def home(request):
     user = request.user
 
-    facebook = user.social_auth.get(provider='facebook')
-    picture = facebook.extra_data.get('picture')
-    picturedata = picture.get('data')
-    pictureurl = picturedata.get('url')
+    try:
+        facebook = user.social_auth.get(provider='facebook')
+        picture = facebook.extra_data.get('picture')
+        picturedata = picture.get('data')
+        pictureurl = picturedata.get('url')
+        userprofile,created = UserProfile.objects.get_or_create(
+            user=user,
+        )
 
-    userprofile, created = UserProfile.objects.get_or_create(
-        user=user,
-    )
+    except:
+        pass
 
-    return render(request, 'home.html')
+    return redirect('api/')
 
 
 @login_required
@@ -88,7 +85,7 @@ class UserProfileAPIViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
 
     def get_permissions(self):
-        permission_classes = [IsAdminUser, IsAuthenticated]
+        permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
 
 
@@ -97,7 +94,7 @@ class QuestionAPIView(viewsets.ModelViewSet):
     queryset = Question.objects.all()
 
     def get_permissions(self):
-        permission_classes = [IsAdminUser, IsAuthenticated]
+        permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
 
 
@@ -106,5 +103,5 @@ class SubmissionAPIView(viewsets.ModelViewSet):
     queryset = Submission.objects.all()
 
     def get_permissions(self):
-        permission_classes = [IsAdminUser, IsAuthenticated]
+        permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]

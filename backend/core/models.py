@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-# Create your models here.
 from social_django.models import UserSocialAuth
 
 
@@ -21,13 +20,15 @@ class UserProfile(models.Model):
 
 	def save(self, *args, **kwargs):
 
-		facebook = self.user.social_auth.get(provider='facebook')
-		self.fid = facebook.uid
-		picture = facebook.extra_data.get('picture')
-		picturedata = picture.get('data')
-		pictureurl = picturedata.get('url')
-		self.pic = pictureurl
-
+		try:
+			facebook = self.user.social_auth.get(provider='facebook')
+			self.fid = facebook.uid
+			picture = facebook.extra_data.get('picture')
+			picturedata = picture.get('data')
+			pictureurl = picturedata.get('url')
+			self.pic = pictureurl
+		except:
+			self.pic = None
 		super().save(*args, **kwargs)
 
 
@@ -69,7 +70,8 @@ class Answer(models.Model):
 
 class Submission(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	ques = models.ForeignKey(Question, on_delete=models.CASCADE)
+	# user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+	ques = models.ForeignKey(Question, on_delete=models.CASCADE, default=None)
 	answer = models.CharField(max_length=100)
 	date = models.DateTimeField(auto_created=True, auto_now_add=True)
 	score = models.IntegerField(blank=True, null=True)
@@ -80,10 +82,11 @@ class Submission(models.Model):
 		return str(self.user)
 
 	def save(self, *args, **kwargs):
+		# self.user_profile = UserProfile.objects.get_or_create(user=self.user)
 		if HintModel.objects.filter(user=self.user, hintviewed=True):
 			self.hintviewed = True
 
-		scores = Submission.objects.filter(ques=self.ques, status='Correct', hintviewed=False).values_list('score',flat=True)
+		scores = Submission.objects.filter(ques=self.ques, status='Correct', hintviewed=False).values_list('score',  flat=True)
 		if len(scores):
 			score = min(scores)
 		else:
@@ -95,8 +98,8 @@ class Submission(models.Model):
 			self.user.userprofile.level += 1
 			self.user.userprofile.submission_count += 1
 
-			start = HappyHour.objects.all().values_list('start',flat=True)
-			end = HappyHour.objects.all().values_list('end',flat=True)
+			start = HappyHour.objects.all().values_list('start', flat=True)
+			end = HappyHour.objects.all().values_list('end', flat=True)
 			hintbool = HintModel.objects.all().filter(user=self.user, ques=self.ques, hintviewed=True)
 			now = timezone.now()
 
@@ -118,9 +121,10 @@ class Submission(models.Model):
 			self.user.userprofile.score += self.score
 		else:
 			self.score = 0
+			self.status = 'Wrong'
 			self.user.userprofile.level += 1
 			self.user.userprofile.submission_count += 1
-
+		self.user.userprofile.save()
 		super().save(*args, **kwargs)
 
 
