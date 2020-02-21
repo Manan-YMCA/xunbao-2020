@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom';
-
+import {Link} from 'react-router-dom'
 const Lowericons = () => {
     return (
         
@@ -11,9 +11,9 @@ const Lowericons = () => {
         
         <div class="row">
         <div class="col-sm-12" className="hide">    
-        <a href="javascript:void(0);" onClick={() => window.location.href = "./Leaderboard"}>
+         <Link to='./Leaderboard'>
         <img src={require('../icons/win gold.png')} className="iconSize rightIcons"/>
-        </a>
+        </Link>
                   </div>
         </div>
         <div class="row">
@@ -25,9 +25,9 @@ const Lowericons = () => {
         </div>
         <div class="row">
         <div class="col-sm-12" className="hide">    
-            <a href="javascript:void(0);" onClick={() => window.location.href = "./Rules"}>      
+             <Link to='./Rules'>     
         <img src={require('../icons/rules.png')} className="iconSize rightIcons icon3" />
-            </a>
+            </Link>
                   </div>
         </div>
         

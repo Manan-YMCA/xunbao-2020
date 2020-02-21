@@ -4,7 +4,7 @@ import Uppericons from './uppericons'
 import Lowericons from './lowericons'
 import MobileUpper from './UpperMobile'
 import LowerMobile from './LowerMobile'
-
+import {Link} from 'react-router-dom'
 const StartGame = () => {
     return (
 
@@ -33,9 +33,9 @@ const StartGame = () => {
         <li>You can get less than max points</li>
         </ol>
 
-        <a href="javascript:void(0);" onClick={() => window.location.href = "./QuestionPage"}>
+        <Link to='./QuestionPage'>
         <img src={require('../icons/START THE GAME.png')} className="StartTheGame"  />
-        </a>   
+        </Link>  
         
         </div>
          

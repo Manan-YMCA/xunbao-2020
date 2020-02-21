@@ -4,7 +4,7 @@ import Uppericons from './uppericons'
 import Lowericons from './lowericons'
 import MobileUpper from './UpperMobile'
 import LowerMobile from './LowerMobile'
-
+import {Link} from 'react-router-dom'
 
 
 import Rules from './Rules'
@@ -32,11 +32,10 @@ const MainLayout = () => {
         
          <img src = {
             require('../icons/on_li_tr_hnt.png')}className = "xunbaoText" / >
-                
-        <a href="javascript:void(0);" onClick={() => window.location.href = "./StartGame"}>
-         <img src = {
+        <Link to='./StartGame'>        
+        <img src = {
             require('../icons/play gold.png')}className = "startButton" / >
-        </a>
+      </Link>
              
              
              

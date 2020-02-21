@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom';
-
+import {Link} from 'react-router-dom'
 const Uppericons = () => {
     return (
         
@@ -10,9 +10,9 @@ const Uppericons = () => {
         <div>
         <div class="row">
         <div class="col-sm-12" className="hide">
-        <a href="javascript:void(0);" onClick={() => window.location.href = "./Developers"}>
+        <Link to='./Developers'>
         <img src={require('../icons/dev gold.png')} className="iconSize leftIcons" />
-        </a>
+        </Link>
         </div>
         </div>
         <div class="row">
@@ -24,9 +24,9 @@ const Uppericons = () => {
         </div>
         <div class="row">
         <div class="col-sm-12" className="hide">
-        <a href="https://www.w3schools.com">
+        <Link to='./MainLayout'>
         <img src={require('../icons/shareingan.png')} className="iconSize leftIcons icon3" />
-        </a>    
+        </Link>    
         </div>
         </div>
         
