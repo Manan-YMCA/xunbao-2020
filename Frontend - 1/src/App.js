@@ -4,6 +4,9 @@ import Developers from './Main/Developers'
 import Leaderboard from './Main/Leaderboard'
 import Rules from './Main/Rules'
 import Winners from './Main/Winners'
+import StartGame from './Main/StartGame'
+import Questionpage from './Main/Questionpage'
+
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
 
 function App() {
@@ -16,6 +19,8 @@ function App() {
            <Route path="/Leaderboard" component={Leaderboard}/>
            <Route path="/Rules" component={Rules}/>
            <Route path="/Winners" component={Winners}/>
+           <Route path="/StartGame" component={StartGame}/>
+           <Route path="/Questionpage" component={Questionpage}/>
       </div>
       </Switch>
       </Router>

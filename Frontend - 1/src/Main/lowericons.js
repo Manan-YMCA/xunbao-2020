@@ -11,7 +11,7 @@ const Lowericons = () => {
         
         <div class="row">
         <div class="col-sm-12" className="hide">    
-        <a href="javascript:void(0);" onClick={() => window.location.href = "./Winners"}>
+        <a href="javascript:void(0);" onClick={() => window.location.href = "./Leaderboard"}>
         <img src={require('../icons/win gold.png')} className="iconSize rightIcons"/>
         </a>
                   </div>

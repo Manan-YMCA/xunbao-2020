@@ -17,7 +17,8 @@ const MainLayout = () => {
         <div>
            < MobileUpper />
         </div>
-        <div class = "row" >
+        
+        <div class = "row row-space" >
         <div class = "col-md-2" >
         <Uppericons / >
         </div>
@@ -32,7 +33,7 @@ const MainLayout = () => {
          <img src = {
             require('../icons/on_li_tr_hnt.png')}className = "xunbaoText" / >
                 
-        <a href="javascript:void(0);" onClick={() => window.location.href = "./Rules"}>
+        <a href="javascript:void(0);" onClick={() => window.location.href = "./StartGame"}>
          <img src = {
             require('../icons/play gold.png')}className = "startButton" / >
         </a>
@@ -46,9 +47,10 @@ const MainLayout = () => {
         <Lowericons />
         </div>
         < div class = "col-md-2" >
-        <LowerMobile />
+       
+             <LowerMobile />
+
         </div>
-        
 
         </div>
 </div>

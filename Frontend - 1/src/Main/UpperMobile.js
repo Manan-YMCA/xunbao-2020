@@ -6,21 +6,21 @@ const MobileUpper = () => {
         <div className="MobileUpper">
         
         <div class="row">
-        <div className="col4 hideMobile col2" >
-        <img src={require('../icons/dev gold.png')} />
+        <div className="col4 hideMobile" >
+        <img src={require('../icons/dev gold.png')} className="mobileiconscssupper" />
         
         </div>
         <div className="col4 hideMobile">
-        <img src={require('../icons/call gold.png')}  />
+        <img src={require('../icons/call gold.png')}  className="mobileiconscssupper" />
         
         </div>
         
         <div className="col4 hideMobile">
-        <img src={require('../icons/win gold.png')} />
+        <img src={require('../icons/win gold.png')} className="mobileiconscssupper" />
         
         </div>
         <div className="col4 hideMobile">
-        <img src={require('../icons/facebook gold.png')}  />
+        <img src={require('../icons/facebook gold.png')} className="mobileiconscssupper" />
         </div>
        
         </div>
