@@ -30,4 +30,4 @@ django-js-asset==1.0.0
 dj-database-url
 whitenoise==5.0.1
 psycopg2-binary
-django-cors-headers==3.0.2
+django-cors-headers==3.2.1
