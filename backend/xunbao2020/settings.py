@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 
     'core',
     'storages',
-
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -69,6 +69,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'xunbao2020.urls'
@@ -189,5 +191,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.user.user_details',
     'social_core.pipeline.social_auth.associate_by_email',
 )
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 django_heroku.settings(locals())
