@@ -24,38 +24,19 @@ const Questionpage = () => {
             <h1 className="QuestionHeading">  Questions  </h1>
             <hr className="Questionhr" /> 
         <br/>
-        <div class="scrollbar scrollbar-danger">
-          <div class="force-overflow">
+       
             <div id="questiontext">
         
            <h1 className="QuestionText">  Q-1 What is the full form of MANAN ?  </h1>
            <input type="text" id="AnswerField" name="Answerield" placeholder="Your Answer" />
-        <h1 className="QuestionText">  Q-1 What is the full form of MANAN ?  </h1>
-           <input type="text" id="AnswerField" name="Answerield" placeholder="Your Answer" />
-        <h1 className="QuestionText">  Q-1 What is the full form of MANAN ?  </h1>
-           <input type="text" id="AnswerField" name="Answerield" placeholder="Your Answer" />
-        <h1 className="QuestionText">  Q-1 What is the full form of MANAN ?  </h1>
-           <input type="text" id="AnswerField" name="Answerield" placeholder="Your Answer" />
-        <h1 className="QuestionText">  Q-1 What is the full form of MANAN ?  </h1>
-           <input type="text" id="AnswerField" name="Answerield" placeholder="Your Answer" />
-                <h1 className="QuestionText">  Q-1 What is the full form of MANAN ?  </h1>
-           <input type="text" id="AnswerField" name="Answerield" placeholder="Your Answer" />
-                <h1 className="QuestionText">  Q-1 What is the full form of MANAN ?  </h1>
-           <input type="text" id="AnswerField" name="Answerield" placeholder="Your Answer" />
-                <h1 className="QuestionText">  Q-1 What is the full form of MANAN ?  </h1>
-           <input type="text" id="AnswerField" name="Answerield" placeholder="Your Answer" />
-                <h1 className="QuestionText">  Q-1 What is the full form of MANAN ?  </h1>
-           <input type="text" id="AnswerField" name="Answerield" placeholder="Your Answer" />
-                <h1 className="QuestionText">  Q-1 What is the full form of MANAN ?  </h1>
-           <input type="text" id="AnswerField" name="Answerield" placeholder="Your Answer" />
+        
         
            </div>
         <a href="javascript:void(0);" onClick={() => window.location.href = "./QuestionPage"}>
         <img src={require('../icons/submit.png')} className="Submit"  />
         </a>   
         </div>
-                  </div>
-                  </div>
+                 
         </div>
         < div class = "col-md-2" >
         <Lowericons />

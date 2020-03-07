@@ -4,9 +4,28 @@ import Uppericons from './uppericons'
 import Lowericons from './lowericons'
 import LowerMobile from './LowerMobile'
 import MobileUpper from './UpperMobile'
+import $ from 'jquery';
+
+class App extends React.Component {
+  componentDidMount() {
+   
+      
+      console.log("aayush");
+      
+      
+      
+      
+      
+      
+      
+  }
+
+}
 
 
-const Leaderboard = () => {
+
+
+    const Leaderboard = () => {
     return (
 
         <div className="Developers">
@@ -26,7 +45,7 @@ const Leaderboard = () => {
         <hr className="Developershr" />
         <br/>
         <div class="row">
-        <div className="col5">
+        <div className="col5" id="details">
        <h1 className="LeaderboardHeading"> Name </h1>
         </div>
         <div className="col5">
@@ -38,20 +57,7 @@ const Leaderboard = () => {
         </div>
         
 
-            <div id="LeaderboardStats">
-
-             <div class="row">
-        <div className="col5">
-       <h1 className="LeaderboardText"> Name </h1>
-        </div>
-        <div className="col5">
-       <h1 className="LeaderboardText"> Level </h1>
-        </div>
-        <div className="col5">
-       <h1 className="LeaderboardText"> Score </h1>
-        </div>
-        </div>
-        
+        <div id="LeaderboardStats">
       
 
 
@@ -79,4 +85,5 @@ const Leaderboard = () => {
             );
 }
 
+    console.log("aayush");
 export default Leaderboard;

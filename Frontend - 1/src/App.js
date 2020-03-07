@@ -1,4 +1,5 @@
 import React from 'react';
+import LoginPage from './Main/LoginPage';
 import MainLayout from './Main/MainLayout';
 import Developers from './Main/Developers'
 import Leaderboard from './Main/Leaderboard'
@@ -6,6 +7,7 @@ import Rules from './Main/Rules'
 import Winners from './Main/Winners'
 import StartGame from './Main/StartGame'
 import Questionpage from './Main/Questionpage'
+import './loader.js'
 
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
 
@@ -14,7 +16,8 @@ function App() {
       <Router>
       <Switch>
       <div className = "App" >
-           <Route exact path="/" component={MainLayout} />
+           <Route exact path="/" component={LoginPage} />
+           <Route path="/MainLayout" component={MainLayout} />
            <Route path="/Developers" component={Developers}/>
            <Route path="/Leaderboard" component={Leaderboard}/>
            <Route path="/Rules" component={Rules}/>
