@@ -4,13 +4,14 @@ from core import views
 from django.contrib.auth import views as auth_views
 from rest_framework_simplejwt import views as jwt_views
 from rest_framework.routers import DefaultRouter
-from core.views import UserProfileAPIViewSet, UserViewSet, SubmissionAPIView, QuestionAPIView
+from core.views import UserProfileAPIViewSet, UserViewSet, SubmissionAPIView, QuestionAPIView, HintView
 
 router = DefaultRouter()
 router.register('user', UserViewSet, basename='user')
 router.register('userprofile', UserProfileAPIViewSet, basename='userprofile')
 router.register('question', QuestionAPIView, basename='question')
 router.register('submission', SubmissionAPIView, basename='submission')
+router.register('hint', HintView, basename='hintmodel')
 
 
 urlpatterns = [

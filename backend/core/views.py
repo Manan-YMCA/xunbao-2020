@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -9,8 +8,8 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import update_session_auth_hash
 from social_django.models import UserSocialAuth
 
-from .serializers import UserSerializer,SubmissionSerializer,QuestionSerializer,UserProfileSerializer
-from .models import Question,Submission,Answer,UserProfile
+from .serializers import UserSerializer,SubmissionSerializer,QuestionSerializer,UserProfileSerializer, HintSerializer
+from .models import Question,Submission,Answer,UserProfile, HintModel
 from .forms import AnswerForm
 # Create your views here.
 
@@ -101,6 +100,15 @@ class QuestionAPIView(viewsets.ModelViewSet):
 class SubmissionAPIView(viewsets.ModelViewSet):
     serializer_class = SubmissionSerializer
     queryset = Submission.objects.all()
+
+    def get_permissions(self):
+        permission_classes = [AllowAny]
+        return [permission() for permission in permission_classes]
+
+
+class HintView(viewsets.ModelViewSet):
+    serializer_class = HintSerializer
+    queryset = HintModel.objects.all()
 
     def get_permissions(self):
         permission_classes = [AllowAny]

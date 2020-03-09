@@ -55,7 +55,7 @@ class Question(models.Model):
 class HintModel(models.Model):
 	ques = models.OneToOneField(Question, on_delete=models.CASCADE)
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	hintviewed = models.BooleanField(default=False)
+	hintviewed = models.BooleanField(default=True)
 
 	def __str__(self):
 		return str(self.ques.no) + ' ' + str(self.user)

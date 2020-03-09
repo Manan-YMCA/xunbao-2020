@@ -32,3 +32,9 @@ class SubmissionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Submission
         fields = "__all__"
+
+class HintSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = HintModel
+        fields = "__all__"
