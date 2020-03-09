@@ -20,15 +20,16 @@ class UserProfile(models.Model):
 
 	def save(self, *args, **kwargs):
 
-		try:
-			facebook = self.user.social_auth.get(provider='facebook')
-			self.fid = facebook.uid
-			picture = facebook.extra_data.get('picture')
-			picturedata = picture.get('data')
-			pictureurl = picturedata.get('url')
-			self.pic = pictureurl
-		except:
-			self.pic = None
+		if self.fid != None:
+			try:
+				facebook = self.user.social_auth.get(provider='facebook')
+				self.fid = facebook.uid
+				picture = facebook.extra_data.get('picture')
+				picturedata = picture.get('data')
+				pictureurl = picturedata.get('url')
+				self.pic = pictureurl
+			except:
+				pass
 		super().save(*args, **kwargs)
 
 
