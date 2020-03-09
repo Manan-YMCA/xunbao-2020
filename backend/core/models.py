@@ -5,7 +5,8 @@ from social_django.models import UserSocialAuth
 
 
 class UserProfile(models.Model):
-	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	# user = models.OneToOneField(User, on_delete=models.CASCADE)
+	name = models.CharField(default=None, max_length=70, blank=True, null=True)
 	pic = models.CharField(default=None, max_length=500, blank=True, null=True)
 	score = models.IntegerField(default=0)
 	level = models.IntegerField(default=1)
@@ -16,21 +17,21 @@ class UserProfile(models.Model):
 		ordering = ['-score', 'submission_count', 'level']
 
 	def __str__(self):
-		return str(self.user) + ' ' + str(self.score)
+		return str(self.name) + ' ' + str(self.score)
 
-	def save(self, *args, **kwargs):
-
-		if self.fid != None:
-			try:
-				facebook = self.user.social_auth.get(provider='facebook')
-				self.fid = facebook.uid
-				picture = facebook.extra_data.get('picture')
-				picturedata = picture.get('data')
-				pictureurl = picturedata.get('url')
-				self.pic = pictureurl
-			except:
-				pass
-		super().save(*args, **kwargs)
+	# def save(self, *args, **kwargs):
+	#
+	# 	if self.fid != None:
+	# 		try:
+	# 			facebook = self.user.social_auth.get(provider='facebook')
+	# 			self.fid = facebook.uid
+	# 			picture = facebook.extra_data.get('picture')
+	# 			picturedata = picture.get('data')
+	# 			pictureurl = picturedata.get('url')
+	# 			self.pic = pictureurl
+	# 		except:
+	# 			pass
+	# 	super().save(*args, **kwargs)
 
 
 def CheckHappyHour(start, now, end):
@@ -54,7 +55,7 @@ class Question(models.Model):
 
 class HintModel(models.Model):
 	ques = models.OneToOneField(Question, on_delete=models.CASCADE)
-	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
 	hintviewed = models.BooleanField(default=True)
 
 	def __str__(self):
@@ -70,7 +71,7 @@ class Answer(models.Model):
 
 
 class Submission(models.Model):
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	# user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	ques = models.ForeignKey(Question, on_delete=models.CASCADE, default=None)
 	answer = models.CharField(max_length=100)
@@ -94,10 +95,10 @@ class Submission(models.Model):
 			score = 101
 		answers = Answer.objects.filter(ques=self.ques).values_list('answer', flat=True)
 
-		if self.answer.lower() in answers and self.user.userprofile.submission_count <= 2500:
+		if self.answer.lower() in answers and self.user.submission_count <= 2500:
 			self.status = 'Correct'
-			self.user.userprofile.level += 1
-			self.user.userprofile.submission_count += 1
+			self.user.level += 1
+			self.user.submission_count += 1
 
 			start = HappyHour.objects.all().values_list('start', flat=True)
 			end = HappyHour.objects.all().values_list('end', flat=True)
@@ -119,13 +120,12 @@ class Submission(models.Model):
 				else:
 					self.score = 20
 
-			self.user.userprofile.score += self.score
+			self.user.score += self.score
 		else:
 			self.score = 0
 			self.status = 'Wrong'
-			self.user.userprofile.level += 1
-			self.user.userprofile.submission_count += 1
-		self.user.userprofile.save()
+			self.user.submission_count += 1
+		self.user.save()
 		super().save(*args, **kwargs)
 
 
