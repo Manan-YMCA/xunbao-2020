@@ -7,12 +7,13 @@ import LowerMobile from './LowerMobile'
 import {Link} from 'react-router-dom'
 import Rules from './Rules'
 import $ from 'jquery';
+import User from './user'
 
 const MainLayout = () => {
     return (
 
 
-        <div className = "main-layout" >
+        <div className = "main-layout" className="mobilecolumn">
         <br />
         <div>
            < MobileUpper />
@@ -22,8 +23,8 @@ const MainLayout = () => {
         <div class = "col-md-2" >
         <Uppericons / >
         </div>
-        <div class="col-md-8">
-        
+        <div class="col-md-8" >
+        <User />
         <img src = {
             require('../icons/xunbao text.png')}className = "xunbaoIcon" / >
         

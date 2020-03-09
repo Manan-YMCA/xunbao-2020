@@ -5,30 +5,63 @@ import Lowericons from './lowericons'
 import LowerMobile from './LowerMobile'
 import MobileUpper from './UpperMobile'
 import $ from 'jquery';
+import User from './user'
 
-class App extends React.Component {
+
+class Leaderboard extends React.Component {
   componentDidMount() {
    
+     
+           
       
-      console.log("aayush");
-      
-      
-      
-      
-      
-      
-      
-  }
+       console.log("aayush");
+       $.ajax({
 
-}
+            type: "GET",
+            crossDomain: true,
+            dataType: 'jason',
+            url: "http://mananxunbao.herokuapp.com/api/userprofile/?format=json",
+           
+          }).done(function (data) {
+
+            
+            //----------------details----------------------
+
+            var obj = JSON.parse(JSON.stringify(data));
+            console.log(obj);
+
+            var details = "";
+            for (var i = 0; i < 10; i++) {
+
+              details +=
+                `<div class="row">
+        <div class="col5">     
+
+        <h1 class="LeaderboardText" >`+obj[i].user[i]+` </h1>
+        </div>
+        <div class="col5">
+        <h1 class="LeaderboardText"> ` + obj[i].level + `</h1>
+        </div>
+        <div class="col5">
+        <h1 class="LeaderboardText" >` + obj[i].score + `</h1>
+        </div>
+        </div>`;
+            }
+
+            $("#LeaderboardStats").append(details);
+
+
+          })
+        }
 
 
 
 
-    const Leaderboard = () => {
+
+    render() {
     return (
 
-        <div className="Developers">
+        <div className="Developers" className="mobilecolumn">>
         
         <br />
         <div>
@@ -56,13 +89,12 @@ class App extends React.Component {
         </div>
         </div>
         
-
-        <div id="LeaderboardStats">
-      
-
-
-        </div>
         
+        <div id="LeaderboardStats" >
+      
+       
+        </div>
+       
         </div>
         
          </div>
@@ -75,15 +107,13 @@ class App extends React.Component {
         
 
         </div>
-</div>
+        </div>
         
-        
-     
         
         
         
             );
-}
+}}
 
-    console.log("aayush");
+    
 export default Leaderboard;

@@ -1,15 +1,8 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import Uppericons from './uppericons'
-import Lowericons from './lowericons'
-import MobileUpper from './UpperMobile'
-import LowerMobile from './LowerMobile'
+
 import {Link} from 'react-router-dom'
-import Rules from './Rules'
-
-
-
-
+import Facebook from './facebook'
 
 
 const LoginPage = () => {
@@ -29,11 +22,8 @@ const LoginPage = () => {
         
          <img src = {
             require('../icons/on_li_tr_hnt.png')}className = "xunbaoText" / >
-        <Link to='./MainLayout'>        
-        <img src = {
-            require('../icons/facebook_login.png')}className = "startButton" / >
-      </Link>
-           
+         
+         <Facebook />  
       </div>
         </div>
 </div>

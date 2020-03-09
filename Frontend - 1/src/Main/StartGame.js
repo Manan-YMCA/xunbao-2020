@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom'
 const StartGame = () => {
     return (
 
-        <div className = "StartGame" >
+        <div className = "StartGame" className="mobilecolumn">>
         <br />
         <div>
            < MobileUpper />

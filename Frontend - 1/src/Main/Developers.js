@@ -7,7 +7,7 @@ import MobileUpper from './UpperMobile'
 const Developers = () => {
     return (
 
-        <div className="Developers">
+        <div className="Developers" className="mobilecolumn">>
         
         <br />
         <div>
