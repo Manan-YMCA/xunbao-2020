@@ -11,7 +11,7 @@ import Modal from './modal'
 
 class Questionpage extends React.Component {
   componentDidMount() {
-   
+      var i=0;
      //--------Calling of Question-------------
       $.ajax({
 
@@ -19,25 +19,24 @@ class Questionpage extends React.Component {
             crossDomain: true,
             dataType: 'json',
             url: "http://mananxunbao.herokuapp.com/api/question",
-           
+            headers: {
+              "Authorization":"Bearer " + localStorage.getItem("token")
+            }
           }).done(function (data) {
 
             var obj = JSON.parse(JSON.stringify(data));
             console.log(obj);
-
-            
-
-            $("#Question").append(obj[0].ques);
-
+          
+            $("#Question").append(obj[i].ques);
+            localStorage.setItem("quesurl",obj[i].url);
 
           })
       
       //---------Submit and Check------------
       
       $(function(){
-       $("#myForm").submit(function(event) {
-            event.preventDefault();
-
+       $('#myBTN').on("click",function() {
+           
             $.ajax({
           url: 'http://mananxunbao.herokuapp.com/api/submission/',
           type: "POST",
@@ -58,19 +57,15 @@ class Questionpage extends React.Component {
               
               if(statusvalue == "Correct"){
                   window.location="./QuestionPage";
+                  i++;
               }
               else{
                   alert("WrongAnswer Try Again");
                   window.location="./QuestionPage";
-                  
+                  i=i;
               }
               
-          },
-          error: function () {
-          	alert("Token Not Received");
-          localStorage.clear();
-       
-      }
+          }
   })
         });
     }) 
@@ -111,7 +106,7 @@ class Questionpage extends React.Component {
         
         
         <div className="col3">
-        <button  className="SubmitButtonCss" type="submit">
+        <button  className="SubmitButtonCss" type="submit" id="myBTN">
         <img src={require('../icons/submit.png')} className="Submitimg"  />
         </button> 
         </div>

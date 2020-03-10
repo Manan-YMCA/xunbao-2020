@@ -19,8 +19,15 @@ class Leaderboard extends React.Component {
 
             type: "GET",
             crossDomain: true,
-            dataType: 'jason',
-            url: "http://mananxunbao.herokuapp.com/api/userprofile/?format=json",
+            dataType: 'json',
+            url: "http://mananxunbao.herokuapp.com/api/userprofile/",
+            type: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            url: "http://mananxunbao.herokuapp.com/api/userprofile/",
+            headers: {
+              "Authorization":"Bearer " + localStorage.getItem("token")
+            }
            
           }).done(function (data) {
 

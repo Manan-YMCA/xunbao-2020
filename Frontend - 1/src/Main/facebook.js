@@ -37,8 +37,9 @@ export default class Facebook extends Component{
             fbContent= null; 
             alert("Welcome");
             window.location="./MainLayout";
-            
-            
+            localStorage.setItem("fullname",this.state.name);
+            localStorage.setItem("userimg",this.state.picture);
+            localStorage.setItem("facebookid",this.state.userID);
         }
         else{
             

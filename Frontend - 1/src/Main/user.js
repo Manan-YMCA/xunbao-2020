@@ -6,8 +6,6 @@ import $ from 'jquery';
 class User extends React.Component {
   componentDidMount() {
       
-      
-      
       //--------Getting token-----------------
          $.ajax({
           url: 'http://mananxunbao.herokuapp.com/api/token/',
@@ -33,6 +31,30 @@ class User extends React.Component {
        
       }
   })
+      //--------Posting Fb Details-----------------
+      
+      $.ajax({
+          url: 'http://mananxunbao.herokuapp.com/api/userprofile/',
+          type: "POST",
+          crossDomain : true,
+          dataType: 'json',
+           headers: {
+              "Authorization":"Bearer " + localStorage.getItem("token")
+            },
+          data: JSON.stringify( {
+              name:localStorage.getItem("fullname"),
+              pic:localStorage.getItem("userimg"),
+              fid:localStorage.getItem("facebookid")
+            }),
+          contentType: "application/json",
+          success: function () {
+            
+              
+             console.log("success posting");
+              
+          }
+  })
+    
       
       //--------User Details-----------------
             
@@ -52,8 +74,8 @@ class User extends React.Component {
             
             var obj = JSON.parse(JSON.stringify(data));
             console.log(obj);
-            $("#user_text").append(obj[0].user[0]);
-            $("#user_image").attr("src", obj[0].pic);
+            $("#user_text").append(localStorage.getItem("fullname"));
+            $("#user_image").attr("src", localStorage.getItem("userimg"));
 
           })
         }

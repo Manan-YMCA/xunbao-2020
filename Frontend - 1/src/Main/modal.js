@@ -5,7 +5,36 @@ import $ from 'jquery';
 class Modal extends React.Component {
   componentDidMount() {
       
-      //api call
+       //--------Hint Button--------------------------------------------
+      
+      $('#myBtn').on("click",function() {
+  
+      
+      $.ajax({
+          url: 'https://mananxunbao.herokuapp.com/api/hint/',
+          type: "POST",
+          crossDomain : true,
+          dataType: "json",
+          contentType: "application/json; charset=utf-8",
+          cache: false,
+          headers: {
+              "Authorization":"Bearer " + localStorage.getItem("token")
+            },
+          data: JSON.stringify({
+             
+              hintviewed:'true',
+              ques: localStorage.getItem("quesurl"),
+              user: 'http://mananxunbao.herokuapp.com/api/userprofile/2/'
+              
+            }),
+          complete: function (data) {
+          console.log("Success");
+    }
+  });
+    });
+      
+      
+      //--------api call--------------------------------------------
       
        $.ajax({
 
@@ -13,7 +42,9 @@ class Modal extends React.Component {
             crossDomain: true,
             dataType: 'json',
             url: "http://mananxunbao.herokuapp.com/api/question",
-           
+            headers: {
+              "Authorization":"Bearer " + localStorage.getItem("token")
+            }
           }).done(function (data) {
 
             
@@ -57,7 +88,6 @@ window.onclick = function(event) {
     return (
     <div>
         
-       
         <button id="myBtn" className="hint_button"  >
         <img src={require('../icons/hint.png')} className="hint_img"  />
         </button>
