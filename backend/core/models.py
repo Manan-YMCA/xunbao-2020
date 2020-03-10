@@ -39,8 +39,8 @@ class Question(models.Model):
 
 
 class HintModel(models.Model):
-	ques = models.OneToOneField(Question, on_delete=models.CASCADE)
-	user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+	ques = models.ForeignKey(Question, on_delete=models.CASCADE)
+	user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	hintviewed = models.BooleanField(default=True)
 
 	def __str__(self):
