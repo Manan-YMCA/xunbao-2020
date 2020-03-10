@@ -75,7 +75,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
 
     def get_permissions(self):
-        permission_classes = [IsAdminUser, IsAuthenticated]
+        permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
 
@@ -84,7 +84,7 @@ class UserProfileAPIViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
 
     def get_permissions(self):
-        permission_classes = [AllowAny]
+        permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
 
@@ -93,7 +93,7 @@ class QuestionAPIView(viewsets.ModelViewSet):
     queryset = Question.objects.all()
 
     def get_permissions(self):
-        permission_classes = [AllowAny]
+        permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
 
@@ -102,7 +102,7 @@ class SubmissionAPIView(viewsets.ModelViewSet):
     queryset = Submission.objects.all()
 
     def get_permissions(self):
-        permission_classes = [AllowAny]
+        permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
 
@@ -111,5 +111,5 @@ class HintView(viewsets.ModelViewSet):
     queryset = HintModel.objects.all()
 
     def get_permissions(self):
-        permission_classes = [AllowAny]
+        permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]

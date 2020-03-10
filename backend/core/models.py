@@ -5,7 +5,6 @@ from social_django.models import UserSocialAuth
 
 
 class UserProfile(models.Model):
-	# user = models.OneToOneField(User, on_delete=models.CASCADE)
 	name = models.CharField(default=None, max_length=70, blank=True, null=True)
 	pic = models.CharField(default=None, max_length=500, blank=True, null=True)
 	score = models.IntegerField(default=0)
@@ -18,20 +17,6 @@ class UserProfile(models.Model):
 
 	def __str__(self):
 		return str(self.name) + ' ' + str(self.score)
-
-	# def save(self, *args, **kwargs):
-	#
-	# 	if self.fid != None:
-	# 		try:
-	# 			facebook = self.user.social_auth.get(provider='facebook')
-	# 			self.fid = facebook.uid
-	# 			picture = facebook.extra_data.get('picture')
-	# 			picturedata = picture.get('data')
-	# 			pictureurl = picturedata.get('url')
-	# 			self.pic = pictureurl
-	# 		except:
-	# 			pass
-	# 	super().save(*args, **kwargs)
 
 
 def CheckHappyHour(start, now, end):
