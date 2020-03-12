@@ -10,10 +10,10 @@ class UserProfile(models.Model):
     score = models.IntegerField(default=0)
     level = models.IntegerField(default=1)
     submission_count = models.IntegerField(default=0)
-    fid = models.SlugField(max_length=100, default=None, blank=True, null=True)
+    fid = models.SlugField(max_length=100, default=None, blank=False, null=False, unique=True)
 
     class Meta:
-        ordering = ['-score', 'submission_count', 'level']
+        ordering = ['-score', '-level', 'submission_count']
 
     def __str__(self):
         return str(self.name) + ' ' + str(self.score)
@@ -39,16 +39,17 @@ class Question(models.Model):
 
 
 class HintModel(models.Model):
-    ques = models.ForeignKey(Question, on_delete=models.CASCADE)
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    ques = models.ForeignKey(Question, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
     fid = models.CharField(max_length=100, default=None, blank=True, null=True)
     hintviewed = models.BooleanField(default=True)
 
     def __str__(self):
-        return str(self.ques.no) + ' ' + str(self.user)
+        return str(self.user)
 
     def save(self, *args, **kwargs):
-        self.user = UserProfile.objects.get_or_create(fid=self.fid)
+        self.user = UserProfile.objects.get(fid=self.fid)
+        super().save(*args, **kwargs)
 
 
 class Answer(models.Model):
@@ -58,8 +59,9 @@ class Answer(models.Model):
     def __str__(self):
         return str(self.answer)
 
+
 class Submission(models.Model):
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, blank=True, null=True)
     # user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     fid = models.CharField(max_length=100, default=None, blank=True, null=True)
     ques = models.ForeignKey(Question, on_delete=models.CASCADE, default=None)
@@ -73,8 +75,8 @@ class Submission(models.Model):
         return str(self.user)
 
     def save(self, *args, **kwargs):
-        # self.user_profile = UserProfile.objects.get_or_create(user=self.user)
-        self.user = UserProfile.objects.get_or_create(fid=self.fid)
+        self.user = UserProfile.objects.get(fid=self.fid)
+
         if HintModel.objects.filter(user=self.user, hintviewed=True):
             self.hintviewed = True
 
@@ -118,6 +120,7 @@ class Submission(models.Model):
             self.user.submission_count += 1
         self.user.save()
         super().save(*args, **kwargs)
+
 
 class HappyHour(models.Model):
     start = models.DateTimeField()
