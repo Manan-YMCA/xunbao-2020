@@ -44,6 +44,9 @@ class HintModel(models.Model):
     fid = models.CharField(max_length=100, default=None, blank=True, null=True)
     hintviewed = models.BooleanField(default=True)
 
+    class Meta:
+        unique_together = (("ques", "user"),)
+
     def __str__(self):
         return str(self.user)
 
