@@ -52,7 +52,7 @@ def QuestionView(request, no):
                 if answer.lower() in answers:
                     ##function to get score
 
-                    submission = Submission.objects.create(answer=answer, user=user, question=question, status='Correct')
+                    submission = Submission.objects.create(answer=answer, user=user, question=question, response='Correct')
                 else:
                     submission = Submission.objects.create(answer=answer,user=user,question=question)
 

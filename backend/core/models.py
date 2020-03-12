@@ -71,7 +71,7 @@ class Submission(models.Model):
     answer = models.CharField(max_length=100)
     date = models.DateTimeField(auto_created=True, auto_now_add=True)
     score = models.IntegerField(blank=True, null=True)
-    status = models.CharField(default='Wrong', choices=(('Correct', 'Correct'), ('Wrong', 'Wrong')), max_length=10)
+    response = models.CharField(default='Wrong', choices=(('Correct', 'Correct'), ('Wrong', 'Wrong')), max_length=10)
     hintviewed = models.BooleanField(default=False)
 
     def __str__(self):
@@ -83,7 +83,7 @@ class Submission(models.Model):
         if HintModel.objects.filter(user=self.user, hintviewed=True):
             self.hintviewed = True
 
-        scores = Submission.objects.filter(ques=self.ques, status='Correct', hintviewed=False).values_list('score',
+        scores = Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=False).values_list('score',
                                                                                                            flat=True)
         if len(scores):
             score = min(scores)
@@ -92,7 +92,7 @@ class Submission(models.Model):
         answers = Answer.objects.filter(ques=self.ques).values_list('answer', flat=True)
 
         if self.answer.lower() in answers and self.user.submission_count <= 2500:
-            self.status = 'Correct'
+            self.response = 'Correct'
             self.user.level += 1
             self.user.submission_count += 1
 
@@ -119,7 +119,7 @@ class Submission(models.Model):
             self.user.score += self.score
         else:
             self.score = 0
-            self.status = 'Wrong'
+            self.response = 'Wrong'
             self.user.submission_count += 1
         self.user.save()
         super().save(*args, **kwargs)

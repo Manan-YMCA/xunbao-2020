@@ -5,8 +5,8 @@ admin.site.site_header = 'XUNBAO 2020'
 
 
 class SubmissionsAdmin(admin.ModelAdmin):
-	list_display = ('user','ques','score','status')
-	list_display_links = ('user','ques','score','status')
+	list_display = ('user','ques','score','response')
+	list_display_links = ('user','ques','score','response')
 	list_max_show_all = 100
 
 
