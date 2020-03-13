@@ -2,10 +2,11 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.permissions import IsAdminUser, AllowAny
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import update_session_auth_hash
+from rest_framework.response import Response
 from social_django.models import UserSocialAuth
 
 from .serializers import UserSerializer,SubmissionSerializer,QuestionSerializer,UserProfileSerializer, HintSerializer
@@ -105,6 +106,12 @@ class SubmissionAPIView(viewsets.ModelViewSet):
         permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
+    def post(self, request):
+        serializer = SubmissionSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class HintView(viewsets.ModelViewSet):
     serializer_class = HintSerializer
