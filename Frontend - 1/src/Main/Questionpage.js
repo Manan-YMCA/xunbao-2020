@@ -8,10 +8,11 @@ import Rules from './Rules'
 import User from './user'
 import $ from 'jquery';
 import Modal from './modal'
+import Statusmodel from './Statusmodel'
 
 class Questionpage extends React.Component {
   componentDidMount() {
-      var i=0;
+       var number =0;    
      //--------Calling of Question-------------
       $.ajax({
 
@@ -27,57 +28,120 @@ class Questionpage extends React.Component {
             var obj = JSON.parse(JSON.stringify(data));
             console.log(obj);
           
-            $("#Question").append(obj[i].ques);
-            localStorage.setItem("quesurl",obj[i].url);
+            $("#Question").append(obj[number].ques);
+            localStorage.setItem("quesurl",obj[number].url);
+            localStorage.setItem("questionnumber",obj[number].no);
 
           })
       
-      //---------Submit and Check------------
       
-      $(function(){
-       $('#myBTN').on("click",function() {
-           
-            $.ajax({
-          url: 'http://mananxunbao.herokuapp.com/api/submission/',
+      
+      
+      
+      
+      //---------Submit and Check------------
+     
+
+       
+      $('#submitbuttoncall').on("click",function() {
+      document.getElementById("Question").innerHTML = "";
+      document.getElementById("statustext").innerHTML = "";
+      $.ajax({
+          url: 'https://mananxunbao.herokuapp.com/api/submission/',
           type: "POST",
           crossDomain : true,
-          dataType: 'json',
+          dataType: "json",
+          contentType: "application/json; charset=utf-8",
+          cache: false,
           headers: {
               "Authorization":"Bearer " + localStorage.getItem("token")
-            },        
-          data: JSON.stringify( {
-              answer: $("#AnswerField").val()
+            },
+          data: JSON.stringify({
+              fid : localStorage.getItem("facebookid"),
+              answer : $("#AnswerField").val(),
+              ques : localStorage.getItem("quesurl")
+              
               
             }),
-          contentType: "application/json",
-          success: function (data) {
-            
-              var statusvalue = data.status;
-              console.log(statusvalue);
+          complete: function (data) {
+          console.log(data.response);
               
-              if(statusvalue == "Correct"){
-                  window.location="./QuestionPage";
-                  i++;
+              
+              var statusis = data.response;
+              
+              $("#statustext").append("Correct");
+              
+              //------------Right Answer------------------
+              
+              
+              if(statusis == undefined){
+                number++;  
+               $.ajax({
+
+            type: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            url: "http://mananxunbao.herokuapp.com/api/question",
+            headers: {
+              "Authorization":"Bearer " + localStorage.getItem("token")
+            }
+          }).done(function (data) {
+            
+            var obj = JSON.parse(JSON.stringify(data));
+            console.log(obj);
+            
+            $("#Question").append(obj[number].ques);
+            localStorage.setItem("quesurl",obj[number].url);
+            localStorage.setItem("questionnumber",obj[number].no);
+
+          })
+                 
+            
+              
               }
               else{
-                  alert("WrongAnswer Try Again");
-                  window.location="./QuestionPage";
-                  i=i;
-              }
-              
-          }
-  })
-        });
-    }) 
+                  
+                  
+                  //------------Wrong Answer------------------
+                  
+                  number = number;
+                  
+                  
+                  $.ajax({
 
+            type: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            url: "http://mananxunbao.herokuapp.com/api/question",
+            headers: {
+              "Authorization":"Bearer " + localStorage.getItem("token")
+            }
+          }).done(function (data) {
+
+            var obj = JSON.parse(JSON.stringify(data));
+            console.log(obj);
+            
+            $("#Question").append(obj[number].ques);
+            localStorage.setItem("quesurl",obj[number].url);
+            localStorage.setItem("questionnumber",obj[number].no);
+
+          })
+                 
+            
+                  
+                  
+                  
+              }
+    }
+  });
+    });
       
-      
-    
-        }
+}
+    //--------------RENDER--------------------------------------- 
     render() {
     return (
     
-    <div className = "main-layout" className="mobilecolumn">>
+    <div className = "main-layout" className="mobilecolumn">
         <br />
         <div>
            < MobileUpper />
@@ -90,33 +154,31 @@ class Questionpage extends React.Component {
         <div class="col-md-8" className="QuestionPageContainer">
        
         <div >
+        <div className="questionpageimg">
         <User />
+        </div>
             <h1 className="QuestionHeading">  Questions  </h1>
             <hr className="Questionhr" /> 
         <br/>
-            <form class="form-signin" id="myForm" method="POST">
+            
             <div id="questiontext">
-        
-           <h1 className="QuestionText" id="Question">  </h1>
            
+           <h1 className="QuestionText" id="Question"> </h1>
+       <div className="col95">
            <input type="text" id="AnswerField" name="Answerield" placeholder="Your Answer" />
-        
+         </div>
+        <div className="col555">
+        <Modal />
+        </div>    
+           
            </div>
         
         
         
-        <div className="col3">
-        <button  className="SubmitButtonCss" type="submit" id="myBTN">
-        <img src={require('../icons/submit.png')} className="Submitimg"  />
-        </button> 
-        </div>
-         </form>
-         <div className="col3">
-            
-             
-         <Modal />
-         </div>
-                 
+          <Statusmodel/>
+        
+
+         
         </div>        
         </div>
         < div class = "col-md-2" >

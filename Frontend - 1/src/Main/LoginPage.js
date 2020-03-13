@@ -43,7 +43,7 @@ class LoginPage extends React.Component {
     
     
     
-        <div className = "main-layout" >
+        <div className = "login page" className="mobilecolumn">
         <br />
         <div class="row">
         

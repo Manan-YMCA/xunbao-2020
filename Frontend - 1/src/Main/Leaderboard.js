@@ -11,16 +11,10 @@ import User from './user'
 class Leaderboard extends React.Component {
   componentDidMount() {
    
-     
-           
       
-       console.log("aayush");
+      
        $.ajax({
 
-            type: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            url: "http://mananxunbao.herokuapp.com/api/userprofile/",
             type: "GET",
             crossDomain: true,
             dataType: 'json',
@@ -28,23 +22,32 @@ class Leaderboard extends React.Component {
             headers: {
               "Authorization":"Bearer " + localStorage.getItem("token")
             }
+            
            
           }).done(function (data) {
 
             
-            //----------------details----------------------
-
             var obj = JSON.parse(JSON.stringify(data));
+            console.log(obj);
+            
+           
+            obj = JSON.parse(JSON.stringify(data));
             console.log(obj);
 
             var details = "";
             for (var i = 0; i < 10; i++) {
 
               details +=
-                `<div class="row">
+                `
+
+            <div class="row">
         <div class="col5">     
 
-        <h1 class="LeaderboardText" >`+obj[i].user[i]+` </h1>
+        <h1 class="LeaderboardText" >`+obj[i].name+` </h1>
+        </div>
+        <div class="col5">     
+        <img class="Leaderboardpic" src="`+obj[i].pic+`" />
+
         </div>
         <div class="col5">
         <h1 class="LeaderboardText"> ` + obj[i].level + `</h1>
@@ -52,13 +55,25 @@ class Leaderboard extends React.Component {
         <div class="col5">
         <h1 class="LeaderboardText" >` + obj[i].score + `</h1>
         </div>
-        </div>`;
+        </div>
+
+
+
+
+
+      `;
             }
 
             $("#LeaderboardStats").append(details);
 
+           
+           
+           
 
           })
+      
+      
+     
         }
 
 
@@ -87,6 +102,9 @@ class Leaderboard extends React.Component {
         <div class="row">
         <div className="col5" id="details">
        <h1 className="LeaderboardHeading"> Name </h1>
+        </div>
+        <div className="col5" id="details">
+       <h1 className="LeaderboardHeading"> Pic </h1>
         </div>
         <div className="col5">
        <h1 className="LeaderboardHeading"> Level </h1>

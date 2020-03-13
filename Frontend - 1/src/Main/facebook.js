@@ -35,20 +35,20 @@ export default class Facebook extends Component{
         var fbContent;
         if(this.state.isLoggedIn){
             fbContent= null; 
-            alert("Welcome");
             window.location="./MainLayout";
             localStorage.setItem("fullname",this.state.name);
             localStorage.setItem("userimg",this.state.picture);
             localStorage.setItem("facebookid",this.state.userID);
         }
         else{
-            
+        
     fbContent = (  <FacebookLogin
     appId="206217843919244"
     autoLoad={true}
     fields="name,email,picture"
     onClick={this.componentClicked}
-    callback={this.responseFacebook} />  )
+    callback={this.responseFacebook} /> 
+                )
             
         }
                        

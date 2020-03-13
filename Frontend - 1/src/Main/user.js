@@ -5,7 +5,7 @@ import $ from 'jquery';
 
 class User extends React.Component {
   componentDidMount() {
-      
+      localStorage.setItem("QuesNumber",0);
       //--------Getting token-----------------
          $.ajax({
           url: 'http://mananxunbao.herokuapp.com/api/token/',
@@ -84,16 +84,13 @@ class User extends React.Component {
     render() {
     return (
     
-     <div className = "user" className="mobilecolumn">
-        <div class="row">
-        <div class="col3">
+     <div className = "user" >
+        
         <img src={""} alt id="user_image" />
         </div>
-        <div class="col3">
-        <p id="user_text" ></p>
- </div>
- </div>
-     </div>
+        
+ 
+   
      
     );}
 }

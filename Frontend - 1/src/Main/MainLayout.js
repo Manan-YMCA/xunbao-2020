@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom'
 import Rules from './Rules'
 import $ from 'jquery';
 import User from './user'
-
+import Usertext from './usertext'
 const MainLayout = () => {
     return (
 
@@ -24,7 +24,12 @@ const MainLayout = () => {
         <Uppericons / >
         </div>
         <div class="col-md-8" >
+        <div className="col3 userimageis">
         <User />
+        </div>
+        <div className="col3 usertextis"  >
+        <Usertext />
+        </div>
         <img src = {
             require('../icons/xunbao text.png')}className = "xunbaoIcon" / >
         

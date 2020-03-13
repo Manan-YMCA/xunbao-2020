@@ -8,35 +8,10 @@ class Modal extends React.Component {
        //--------Hint Button--------------------------------------------
       
       $('#myBtn').on("click",function() {
-  
-      
-      $.ajax({
-          url: 'https://mananxunbao.herokuapp.com/api/hint/',
-          type: "POST",
-          crossDomain : true,
-          dataType: "json",
-          contentType: "application/json; charset=utf-8",
-          cache: false,
-          headers: {
-              "Authorization":"Bearer " + localStorage.getItem("token")
-            },
-          data: JSON.stringify({
-             
-              hintviewed:'true',
-              ques: localStorage.getItem("quesurl"),
-              user: 'http://mananxunbao.herokuapp.com/api/userprofile/2/'
-              
-            }),
-          complete: function (data) {
-          console.log("Success");
-    }
-  });
-    });
-      
-      
-      //--------api call--------------------------------------------
-      
-       $.ajax({
+          document.getElementById("modeltexthint").innerHTML = "";
+      //--------Call Hint--------------------------------------------    
+          
+          $.ajax({
 
             type: "GET",
             crossDomain: true,
@@ -47,67 +22,81 @@ class Modal extends React.Component {
             }
           }).done(function (data) {
 
-            
-            //----------------details----------------------
-
             var obj = JSON.parse(JSON.stringify(data));
             console.log(obj);
-
-           
-
-            $("#hint_para").append(obj[0].hint);
-           
+          
+            
+            $("#modeltexthint").append(obj[localStorage.getItem("questionnumber")].hint);
+            console.log(obj[localStorage.getItem("questionnumber")].hint);
 
           })
       
-      
-      
-      
-      
-      
-      //modal
-var modal = document.getElementById("myModal");
-var btn = document.getElementById("myBtn");
-var span = document.getElementsByClassName("close")[0];
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-      
-  }
     
+          
+     //--------Post Hint--------------------------------------------         
+          
+            $.ajax({
+          url: 'https://mananxunbao.herokuapp.com/api/hint/',
+          type: "POST",
+          crossDomain : true,
+          dataType: "json",
+          contentType: "application/json; charset=utf-8",
+          cache: false,
+          headers: {
+              "Authorization":"Bearer " + localStorage.getItem("token")
+            },
+          data: JSON.stringify({
+              fid : localStorage.getItem("facebookid"),
+              hintviewed : true,
+              ques : localStorage.getItem("quesurl"),
+              
+              
+            }),
+          complete: function (data) {
+          console.log("Success");
+    }
+  });
+    });
+      
+}
+    
+                            
+    //--------------RENDER---------------------------------------                        
     render() {
     return (
     <div>
         
-        <button id="myBtn" className="hint_button"  >
-        <img src={require('../icons/hint.png')} className="hint_img"  />
+        <button  className="hint_button" data-toggle="modal" data-target="#exampleModalCenter" type="button" id="myBtn" data-placement="right" title="Hint will cost you 20 points">
+        
         </button>
 
 
-<div id="myModal" className="modal">
-<div className="modal-content">
-    <div className="modal-header">
-      <span className="close">&times;</span>
-      
-    </div>
-    <div className="modal-body">
-      <p id="hint_para">HINT : </p>
-      
-    </div>
-    
-  </div>
 
-</div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">HINT</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modeltexthint">
+        Hint : 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
     </div>
+  </div>
+</div>
+
+
+
+
+
+        </div>
     
     
     

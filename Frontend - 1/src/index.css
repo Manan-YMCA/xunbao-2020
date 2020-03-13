@@ -139,7 +139,28 @@ img {
 }
 
 .col5 {
-  width: 33%;
+  width: 25%;
+}
+
+.col20 {
+  width: 20%;
+  float: left;
+}
+
+.col95 {
+  float: left;
+  width: 93%;
+  text-align: center;
+}
+
+.col60 {
+  float: left;
+  width: 60%;
+}
+
+.col555 {
+  float: left;
+  width: 7%;
 }
 
 .mobileiconscssupper {
@@ -253,11 +274,22 @@ img {
 
 }
 
+.Leaderboardpic {
+
+  border: 2px solid #Fda212;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
 
 /*===========Question Page=========== */
 
 .QuestionHeading {
-  color: #Fda212;
+  color: rgb(177, 175, 175);
   font-family: Geomancy Extra Bold;
   font-size: 2.5rem;
   text-align: center;
@@ -265,7 +297,7 @@ img {
 }
 
 .Questionhr {
-  border-top: 3px solid #Fda212;
+  border-top: 3px solid rgb(177, 175, 175);
   width: 13rem;
   margin-top: -0.3rem;
 }
@@ -287,59 +319,56 @@ img {
   border-radius: 4px;
   box-sizing: border-box;
   font-family: Geomancy Extra Bold;
-  margin-top: 1rem;
-
-}
-
-.Submitimg {
-  display: block;
-  margin-left: auto;
-  margin-right: -4rem;
-  width: 40%;
   margin-top: 1.5rem;
+
 }
 
 
-.Hint {
-  display: block;
-  margin-right: auto;
-  width: 17%;
-  margin-top: 1.9rem;
-  margin-left: 3rem;
-}
+
+
+
 
 .QuestionPageContainer {
   margin-top: 1rem;
-  background-color: black;
+  background-image: url("./icons/stars.jpg");
   border-radius: 7%;
-  border: 0.4rem solid #Fda212;
-  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+  border: 0.4rem solid rgb(233, 66, 25);
+  padding: 3rem 1.5rem 1.5rem 1.5rem;
   width: 66.6%;
   max-width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
 }
 
 .hint_button {
 
-  margin-top: 2rem;
-  border-radius: 50%;
-  margin-left: 3rem;
-  border: 3px solid black;
+  background: url("./icons/hint.png") no-repeat;
+  width: 60px;
+  height: 60px;
+  background-size: 100% 100%;
+  border-color: transparent;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+
+
+}
+
+
+
+#submitbuttoncall {
+  background: url("./icons/submit.png") no-repeat;
+  height: 100px;
+  width: 200px;
+  background-size: 100% 100%;
   padding: 0px 0px 0px 0px;
-  background-color: black;
+  border-color: transparent;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
-
-.hint_img {
-  height: 70px;
-}
-
-.SubmitButtonCss {
-
-  padding: 0px 0px 0px 0px;
-  background-color: black;
-  border: 3px solid black;
-}
-
-
 
 /*===========User Page=========== */
 
@@ -349,7 +378,7 @@ img {
   border-radius: 50%;
   border: 4px solid #Fda212;
   display: block;
-  margin-right: 1.2rem;
+  margin-right: auto;
   margin-left: auto;
 }
 
@@ -357,112 +386,23 @@ img {
   font-family: Geomancy Extra Bold;
   margin-top: 0.8rem;
   color: #Fda212;
-  margin-left: -0.5rem;
+  margin-left: -1rem;
 
+}
+
+.userimageis {
+  padding-left: 400px;
 }
 
 /*===========Modal Page=========== */
-.modal {
-  display: none;
 
-  position: fixed;
 
-  z-index: 1;
-
-  padding-top: 50px;
-
-  left: 0;
-  top: 0;
-  width: 200px;
-
-  height: 200px;
-
-  overflow: auto;
-
-  background-color: rgb(0, 0, 0);
-
-  background-color: rgba(0, 0, 0, 0.4);
-
-}
-
-.modal-content {
-
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  width: 200px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s
-}
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0
-  }
-
-  to {
-    top: 0;
-    opacity: 1
-  }
-}
-
-@keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0
-  }
-
-  to {
-    top: 0;
-    opacity: 1
-  }
-}
-
-/* The Close Button */
-.close {
-  color: white;
-  float: right;
-  font-size: 10px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
 
 .modal-header {
-  padding: 1px 12px;
+
   background-color: #Fda212;
   color: white;
 }
-
-.modal-body {
-  padding: 1px 12px;
-}
-
-.modal_container {
-  max-width: 100px;
-}
-
-#hint_para {
-
-
-  font-family: Geomancy Extra Bold;
-  text-align: center;
-
-
-}
-
-
 
 
 /*===========Mobile Page=========== */
@@ -487,8 +427,8 @@ img {
 
   .mobilecolumn {
 
-    margin-left: 1.0rem;
-    margin-right: auto;
+    margin-left: 3.0rem;
+
   }
 
   .hide {
@@ -591,7 +531,7 @@ img {
 
   .xunbaoIcon {
     width: 95%;
-    margin-top: 2rem;
+    margin-top: 5.5rem;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -634,37 +574,94 @@ img {
     margin-right: auto;
   }
 
-  .Submitimg {
+
+
+
+  #user_image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 4px solid #Fda212;
     display: block;
+    margin-right: 3rem;
     margin-left: auto;
-    margin-right: -1rem;
-    height: 40%;
-    width: 92%;
-    margin-top: 0rem;
   }
 
-  .Submit {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-    height: 60%;
+  #user_text {
+    font-family: Geomancy Extra Bold;
+    margin-top: 0.8rem;
+    color: #Fda212;
+    margin-left: -2.4rem;
+
+  }
+
+  .QuestionHeading {
+    color: rgb(177, 175, 175);
+    font-family: Geomancy Extra Bold;
+    font-size: 2rem;
+    text-align: center;
     margin-top: 1.5rem;
+  }
+
+  .Questionhr {
+    border-top: 3px solid rgb(177, 175, 175);
+    width: 10rem;
+    margin-top: -0.3rem;
   }
 
   .hint_button {
 
-    margin-top: 0rem;
-    border-radius: 50%;
+    background: url("./icons/hint.png") no-repeat;
+    width: 35px;
+    height: 35px;
+    background-size: 100% 100%;
+    border-color: transparent;
+
+    margin-left: -0.3rem;
+
+    margin-top: 1.5rem;
+
+
+  }
+
+
+
+  #submitbuttoncall {
+    background: url("./icons/submit.png") no-repeat;
+    height: 50px;
+    width: 100px;
+    background-size: 100% 100%;
+    padding: 0px 0px 0px 0px;
+    border-color: transparent;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border: 3px solid black;
-    padding: 0px 0px 0px 0px;
-    background-color: black;
   }
 
-  .hint_img {
-    height: 40px;
+  #AnswerField {
+    width: 90%;
+    padding: 6px 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-family: Geomancy Extra Bold;
+    margin-top: 1.5rem;
+
+  }
+
+  .userimageis {
+    padding-left: 74px;
+    margin-top: 1rem;
+
+  }
+
+  .usertextis {
+    padding-left: 18px;
+    margin-top: 1rem;
+  }
+
+  .questionpageimg {
+    margin-right: 10px;
   }
 }
