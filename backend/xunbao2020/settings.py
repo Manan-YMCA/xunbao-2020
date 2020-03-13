@@ -33,7 +33,7 @@ SECRET_KEY = '$%6u%b02#8w5%kj^uuvft)u-i6bhhgusgk)3!5xna$nejgmvot'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://mananxunbao.herokuapp.com/', ]
+ALLOWED_HOSTS = ['https://mananxunbao.herokuapp.com/', 'https://xunbao.elementsculmyca.com/']
 
 
 # Application definition
@@ -194,5 +194,6 @@ SOCIAL_AUTH_PIPELINE = (
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
+    'https://xunbao.elementsculmyca.com/',
 ]
 django_heroku.settings(locals())

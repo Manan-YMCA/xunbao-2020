@@ -33,6 +33,15 @@ class SubmissionSerializer(serializers.HyperlinkedModelSerializer):
         model = Submission
         fields = "__all__"
 
+    # def create(self, validated_data):
+    #     tmp_post = validated_data
+    #     submission = Submission.objects.create(
+    #         fid=tmp_post['fid'],
+    #         ques=tmp_post['ques'],
+    #         answer=tmp_post['answer'],
+    #     )
+    #
+    #     return submission
 
 class HintSerializer(serializers.HyperlinkedModelSerializer):
 
