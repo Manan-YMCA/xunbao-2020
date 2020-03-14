@@ -194,6 +194,6 @@ SOCIAL_AUTH_PIPELINE = (
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
-    'https://xunbao.elementsculmyca.com/',
+    'https://xunbao.elementsculmyca.com',
 ]
 django_heroku.settings(locals())
