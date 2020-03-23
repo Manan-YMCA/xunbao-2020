@@ -8,7 +8,7 @@ class User extends React.Component {
       localStorage.setItem("QuesNumber",0);
       //--------Getting token-----------------
          $.ajax({
-          url: 'http://mananxunbao.herokuapp.com/api/token/',
+          url: 'https://mananxunbao.herokuapp.com/api/token/',
           type: "POST",
           crossDomain : true,
           dataType: 'json',
@@ -34,7 +34,7 @@ class User extends React.Component {
       //--------Posting Fb Details-----------------
       
       $.ajax({
-          url: 'http://mananxunbao.herokuapp.com/api/userprofile/',
+          url: 'https://mananxunbao.herokuapp.com/api/userprofile/',
           type: "POST",
           crossDomain : true,
           dataType: 'json',
@@ -63,7 +63,7 @@ class User extends React.Component {
             type: "GET",
             crossDomain: true,
             dataType: 'json',
-            url: "http://mananxunbao.herokuapp.com/api/userprofile/",
+            url: "https://mananxunbao.herokuapp.com/api/userprofile/",
             headers: {
               "Authorization":"Bearer " + localStorage.getItem("token")
             }

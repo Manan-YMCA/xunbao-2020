@@ -16,7 +16,7 @@ class Modal extends React.Component {
             type: "GET",
             crossDomain: true,
             dataType: 'json',
-            url: "http://mananxunbao.herokuapp.com/api/question",
+            url: "https://mananxunbao.herokuapp.com/api/question",
             headers: {
               "Authorization":"Bearer " + localStorage.getItem("token")
             }

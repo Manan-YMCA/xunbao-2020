@@ -10,7 +10,7 @@ class LoginPage extends React.Component {
         
       //--------Getting token-----------------
          $.ajax({
-          url: 'http://mananxunbao.herokuapp.com/api/token/',
+          url: 'https://mananxunbao.herokuapp.com/api/token/',
           type: "POST",
           crossDomain : true,
           dataType: 'json',
