@@ -1,5 +1,5 @@
-from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
+import json
+
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from rest_framework import viewsets, status
@@ -8,65 +8,22 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import update_session_auth_hash
 from rest_framework.response import Response
 from social_django.models import UserSocialAuth
+from django.http import JsonResponse
+from django.core import serializers
 
 from .serializers import UserSerializer,SubmissionSerializer,QuestionSerializer,UserProfileSerializer, HintSerializer
 from .models import Question,Submission,Answer,UserProfile, HintModel
 from .forms import AnswerForm
 # Create your views here.
 
-
-def login(request):
-    logout(request)
-    return render(request, 'login.html')
+#
+# def login(request):
+#     logout(request)
+#     return render(request, 'login.html')
 
 
 def home(request):
-    # user = request.user
-    #
-    # try:
-    #     facebook = user.social_auth.get(provider='facebook')
-    #     picture = facebook.extra_data.get('picture')
-    #     picturedata = picture.get('data')
-    #     pictureurl = picturedata.get('url')
-    #     userprofile,created = UserProfile.objects.get_or_create(
-    #         user=user,
-    #     )
-    #
-    # except:
-    #     pass
-
     return redirect('api/')
-
-
-@login_required
-def QuestionView(request, no):
-    user = request.user
-
-    if user.userprofile.level == no:
-        question = Question.objects.get(no=no)
-        answers = Answer.objects.filter(ques=question).values_list('answer', flat=True)
-        print(answers)
-        if request.method == 'POST':
-            answerform = AnswerForm(request.POST)
-            if answerform.is_valid():
-                answer = answerform.cleaned_data['answer']
-                if answer.lower() in answers:
-                    ##function to get score
-
-                    submission = Submission.objects.create(answer=answer, user=user, question=question, response='Correct')
-                else:
-                    submission = Submission.objects.create(answer=answer,user=user,question=question)
-
-                answerform.save()
-        else:
-            answerform = AnswerForm(request.POST)
-
-        context = {
-            'user': user,
-            'question': question,
-            'answers': answers,
-        }
-        return render(request, 'core/question.html', context, {'form': answerform})
 
 
 # API VIEWS
@@ -91,7 +48,18 @@ class UserProfileAPIViewSet(viewsets.ModelViewSet):
 
 class QuestionAPIView(viewsets.ModelViewSet):
     serializer_class = QuestionSerializer
-    queryset = Question.objects.all()
+    # queryset = Question.objects.all()
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the purchases for
+        the user as determined by the username portion of the URL.
+        """
+        # fid = self.kwargs['fid']
+        fid = self.request.query_params.get('fid', None)
+        user = UserProfile.objects.get(fid=fid)
+        level = user.level
+        return Question.objects.filter(no=level)
 
     def get_permissions(self):
         permission_classes = [IsAuthenticated]
@@ -121,6 +89,7 @@ class SubmissionAPIView(viewsets.ModelViewSet):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
+
 class HintView(viewsets.ModelViewSet):
     serializer_class = HintSerializer
     queryset = HintModel.objects.all()
@@ -128,3 +97,13 @@ class HintView(viewsets.ModelViewSet):
     def get_permissions(self):
         permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
+
+
+
+def GetQuestionAPI(request, fid):
+    user = UserProfile.objects.get(fid=fid)
+    level = user.level
+    question = Question.objects.filter(no=level)
+    data = serializers.serialize("json", question)
+
+    return JsonResponse(data,safe=False)

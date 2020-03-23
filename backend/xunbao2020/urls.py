@@ -17,13 +17,14 @@ router.register('hint', HintView, basename='hintmodel')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.home, name="home"),
-    path('core/', include('core.urls', namespace='core')),
-    path("login/", views.login, name="login"),
-    path("logout/", auth_views.LogoutView.as_view(), name="logout"),
+    # path('core/', include('core.urls', namespace='core')),
+    # path("login/", views.login, name="login"),
+    # path("logout/", auth_views.LogoutView.as_view(), name="logout"),
     path('social-auth/', include('social_django.urls', namespace="social")),
     path('api-auth/', include('rest_framework.urls')),
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    path('question-api/<int:fid>/', views.GetQuestionAPI, name ='question_api'),
     path('api/', include(router.urls), name='api'),
 
 ]
