@@ -26,7 +26,7 @@ class User extends React.Component {
               
           },
           error: function () {
-          	alert("Token Not Received");
+          	
           localStorage.clear();
        
       }
