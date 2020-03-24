@@ -1,32 +1,78 @@
 import json
-
+from datetime import datetime, timedelta
+from rest_framework_jwt.settings import api_settings
+import jwt
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAdminUser, AllowAny
 from rest_framework.permissions import IsAuthenticated
-from django.contrib.auth import update_session_auth_hash
 from rest_framework.response import Response
-from social_django.models import UserSocialAuth
-from django.http import JsonResponse
+from rest_framework_simplejwt.views import TokenViewBase
 from django.core import serializers
 
-from .serializers import UserSerializer,SubmissionSerializer,QuestionSerializer,UserProfileSerializer, HintSerializer
-from .models import Question,Submission,Answer,UserProfile, HintModel
-from .forms import AnswerForm
-# Create your views here.
+from .serializers import UserSerializer, SubmissionSerializer, QuestionSerializer, UserProfileSerializer, HintSerializer
+from .models import Question, Submission, UserProfile, HintModel
+import requests
 
-#
-# def login(request):
-#     logout(request)
-#     return render(request, 'login.html')
 
+def fb_get_fid(input_token):
+    URL = "https://graph.facebook.com/debug_token"
+    # input_token = 'EAALjHcMKUWYBAHCYrkJ7hNWw2OP2PK9jNvc6e8vJd8XNTgpMX5luXRbwulcCgGxEdDRLqSdVcaca0hr32aDiVZB0sbtTuhmGVXbZCYZBbMJDhIeD0gXvGpEPJR5U32bfGZAqNFN9eAStF1zF1S51HPO7nwC1MFWDocxZC158ZCN7DHfFdDgnzrOAZASgiK6ZC4DyMfFidx73UmVhjSSXnoiGuvlBaGutxgZAZCbI7SIhoXBQZDZD'
+    access_token = '812666919211366|zlJmX1FBFK_b6KRXLGNA-eoC0w4'
+    PARAMS = {'input_token': input_token, 'access_token': access_token}
+    r = requests.get(url=URL, params=PARAMS)
+    data = r.json()
+    fid = data['data']['user_id']
+    return fid
+
+def get_token():
+    URL = "http://mananxunbao.herokuapp.com/api/token/"
+    data = {
+        'username': 'sanyam',
+        'password': 's2ny2mmitt2l',
+    }
+    r = requests.post(url=URL, data=data)
+    data = r.json()
+    token = data['access']
+    return token
 
 def home(request):
     return redirect('api/')
 
 
-# API VIEWS
+class JWTViewSet(viewsets.ViewSet):
+
+    def create(self, request, *args, **kwargs):
+        token = self.request.query_params.get('input_token', None)
+        fid = fb_get_fid(token)
+        userprofile = UserProfile.objects.get(fid=fid)
+        if userprofile is not None:
+            token = get_token()
+            data = {
+                'access' : token
+            }
+            return Response(data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        # jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
+        # jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
+        #
+        # payload = jwt_payload_handler(user)
+        # token = jwt_encode_handler(payload)
+
+        # dt = datetime.now() + timedelta(days=60)
+        # token = jwt.encode({
+        #     "token_type": "access",
+        #     'id': user.id,
+        #     'exp': int(dt.strftime('%s'))
+        # }, 'secret', algorithm='HS256')
+        #
+        # token = token.decode('utf-8')
+
+
+
 
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
@@ -36,27 +82,35 @@ class UserViewSet(viewsets.ModelViewSet):
         permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
-
 class UserProfileAPIViewSet(viewsets.ModelViewSet):
     serializer_class = UserProfileSerializer
-    queryset = UserProfile.objects.all()
+    # queryset = UserProfile.objects.all()
+
+    def get_queryset(self):
+        token = self.request.query_params.get('token', None)
+        fid = fb_get_fid(token)
+        user = UserProfile.objects.filter(fid=fid)
+        return user
 
     def get_permissions(self):
         permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
+class LeaderboardAPIViewSet(viewsets.ModelViewSet):
+    serializer_class = UserProfileSerializer
+    queryset = UserProfile.objects.all()
+
+    def get_permissions(self):
+        permission_classes = [AllowAny]
+        return [permission() for permission in permission_classes]
 
 class QuestionAPIView(viewsets.ModelViewSet):
     serializer_class = QuestionSerializer
     # queryset = Question.objects.all()
 
     def get_queryset(self):
-        """
-        This view should return a list of all the purchases for
-        the user as determined by the username portion of the URL.
-        """
-        # fid = self.kwargs['fid']
         fid = self.request.query_params.get('fid', None)
+        # fid = fb_get_fid(token)
         user = UserProfile.objects.get(fid=fid)
         level = user.level
         return Question.objects.filter(no=level)
@@ -65,7 +119,6 @@ class QuestionAPIView(viewsets.ModelViewSet):
         permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
-
 class SubmissionAPIView(viewsets.ModelViewSet):
     serializer_class = SubmissionSerializer
     queryset = Submission.objects.all()
@@ -73,6 +126,14 @@ class SubmissionAPIView(viewsets.ModelViewSet):
     def get_permissions(self):
         permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
+
+    # def get_queryset(self):
+    #
+    #     token = self.request.query_params.get('token', None)
+    #     fid = fb_get_fid(token)
+    #     user = UserProfile.objects.get(fid=fid)
+    #     level = user.level
+    #     return Question.objects.filter(no=level)
 
     # def create(self, request, *args, **kwargs):
     #     context = {'request': request}
@@ -89,7 +150,6 @@ class SubmissionAPIView(viewsets.ModelViewSet):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
-
 class HintView(viewsets.ModelViewSet):
     serializer_class = HintSerializer
     queryset = HintModel.objects.all()
@@ -99,11 +159,3 @@ class HintView(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
 
 
-
-def GetQuestionAPI(request, fid):
-    user = UserProfile.objects.get(fid=fid)
-    level = user.level
-    question = Question.objects.filter(no=level)
-    data = serializers.serialize("json", question)
-
-    return JsonResponse(data,safe=False)

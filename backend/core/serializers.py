@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.relations import PrimaryKeyRelatedField
+from rest_framework_simplejwt.serializers import TokenObtainSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import Question,Submission,HintModel,UserProfile
 
@@ -42,6 +44,7 @@ class SubmissionSerializer(serializers.HyperlinkedModelSerializer):
     #     )
     #
     #     return submission
+
 
 class HintSerializer(serializers.HyperlinkedModelSerializer):
 
