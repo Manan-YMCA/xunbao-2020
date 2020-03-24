@@ -1,15 +1,9 @@
-import json
-from datetime import datetime, timedelta
-from rest_framework_jwt.settings import api_settings
-import jwt
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAdminUser, AllowAny
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework_simplejwt.views import TokenViewBase
-from django.core import serializers
 
 from .serializers import UserSerializer, SubmissionSerializer, QuestionSerializer, UserProfileSerializer, HintSerializer
 from .models import Question, Submission, UserProfile, HintModel

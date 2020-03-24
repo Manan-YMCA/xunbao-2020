@@ -1,1 +1,0 @@
-@"d:\xunbao2020\env3\scripts\python.exe" "d:\xunbao2020\env3\Scripts\markdown_py" %*

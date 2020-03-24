@@ -92,7 +92,7 @@
       <updated>1584994412107</updated>
       <workItem from="1584994416226" duration="4067000" />
       <workItem from="1585019960071" duration="6740000" />
-      <workItem from="1585031248933" duration="13960000" />
+      <workItem from="1585031248933" duration="14697000" />
     </task>
     <servers />
   </component>
@@ -126,7 +126,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/backend/core/views.py</url>
-          <line>106</line>
+          <line>100</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
