@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDom from "react-dom";
-import Uppericons from "./uppericons";
-import Lowericons from "./lowericons";
-import MobileUpper from "./UpperMobile";
-import LowerMobile from "./LowerMobile";
+import Uppericons from "../MainLayout/uppericons";
+import Lowericons from "../MainLayout/lowericons";
+import MobileUpper from "../MainLayout/MobileView/UpperMobile";
+import LowerMobile from "../MainLayout/MobileView/LowerMobile";
 import Rules from "./Rules";
-import User from "./user";
+import User from "../MainLayout/user";
 import $ from "jquery";
 import Modal from "./modal";
 import Statusmodel from "./Statusmodel";
@@ -13,14 +13,17 @@ import Statusmodel from "./Statusmodel";
 class Questionpage extends React.Component {
   componentDidMount() {
     var number = 0;
+      
     //--------Calling of Question-------------
+      
     $.ajax({
       type: "GET",
       crossDomain: true,
       dataType: "json",
       url: "https://mananxunbao.herokuapp.com/api/question",
       headers: {
-        Authorization: "Bearer " + localStorage.getItem("token")
+        Authorization: "Bearer " + localStorage.getItem("token"),
+        fid : localStorage.getItem("facebookid") 
       }
     }).done(function(data) {
       var obj = JSON.parse(JSON.stringify(data));
@@ -29,6 +32,7 @@ class Questionpage extends React.Component {
       $("#Question").append(obj[number].ques);
       localStorage.setItem("quesurl", obj[number].url);
       localStorage.setItem("questionnumber", obj[number].no);
+        
     });
 
     //---------Submit and Check------------
@@ -58,47 +62,14 @@ class Questionpage extends React.Component {
 
           //------------Right Answer------------------
 
-          if (statusis&&statusis.response!=="Wrong") { $("#statustext").append("Correct");
+          if (statusis&&statusis.response!=="Wrong") { 
             $("#statustext").append("Correct");
-            number++;
-            $.ajax({
-              type: "GET",
-              crossDomain: true,
-              dataType: "json",
-              url: "https://mananxunbao.herokuapp.com/api/question",
-              headers: {
-                Authorization: "Bearer " + localStorage.getItem("token")
-              }
-            }).done(function(data) {
-              var obj = JSON.parse(JSON.stringify(data));
-              console.log(obj);
-
-              $("#Question").append(obj[number].ques);
-              localStorage.setItem("quesurl", obj[number].url);
-              localStorage.setItem("questionnumber", obj[number].no);
-            });
+            
           } else {
             //------------Wrong Answer------------------
 
             $("#statustext").append("Wrong!");
-            number = number;
-
-            $.ajax({
-              type: "GET",
-              crossDomain: true,
-              dataType: "json",
-              url: "https://mananxunbao.herokuapp.com/api/question",
-              headers: {
-                Authorization: "Bearer " + localStorage.getItem("token")
-              }
-            }).done(function(data) {
-              var obj = JSON.parse(JSON.stringify(data));
-              console.log(obj);
-
-              $("#Question").append(obj[number].ques);
-              localStorage.setItem("quesurl", obj[number].url);
-              localStorage.setItem("questionnumber", obj[number].no);
-            });
+            
           }
         }
       });

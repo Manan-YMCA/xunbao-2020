@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import Uppericons from './uppericons'
-import Lowericons from './lowericons'
-import LowerMobile from './LowerMobile'
-import MobileUpper from './UpperMobile'
+import Uppericons from '../MainLayout/uppericons'
+import Lowericons from '../MainLayout/lowericons'
+import LowerMobile from '../MainLayout/MobileView/LowerMobile'
+import MobileUpper from '../MainLayout/MobileView/UpperMobile'
 const Developers = () => {
     return (
 

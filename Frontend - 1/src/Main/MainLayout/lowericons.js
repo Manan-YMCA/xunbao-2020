@@ -11,7 +11,7 @@ const Lowericons = () => {
         
         <div class="row">
         <div class="col-sm-12" className="hide">    
-         <Link to='./Leaderboard'>
+         <Link to='../Leaderboard/Leaderboard'>
         <img src={require('../icons/win gold.png')} className="iconSize rightIcons"/>
         </Link>
                   </div>
@@ -25,7 +25,7 @@ const Lowericons = () => {
         </div>
         <div class="row">
         <div class="col-sm-12" className="hide">    
-             <Link to='./Rules'>     
+             <Link to='../QuestionPage/Rules'>     
         <img src={require('../icons/rules.png')} className="iconSize rightIcons icon3" />
             </Link>
                   </div>

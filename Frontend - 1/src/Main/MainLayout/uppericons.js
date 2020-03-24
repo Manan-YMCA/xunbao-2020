@@ -10,7 +10,7 @@ const Uppericons = () => {
         <div>
         <div class="row">
         <div class="col-sm-12" className="hide">
-        <Link to='./Developers'>
+        <Link to='../Developers/Developers'>
         <img src={require('../icons/dev gold.png')} className="iconSize leftIcons" />
         </Link>
         </div>

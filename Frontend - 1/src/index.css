@@ -25,7 +25,7 @@ html {
 
 body {
 
-  background-image: url("./icons/background.png");
+  background-image: url("./Main/icons/background.png");
   background-repeat: no-repeat;
   background-size: 1537px 800px;
 }
@@ -324,13 +324,9 @@ img {
 }
 
 
-
-
-
-
 .QuestionPageContainer {
   margin-top: 1rem;
-  background-image: url("./icons/stars.jpg");
+  background-image: url("./Main/icons/stars.jpg");
   border-radius: 7%;
   border: 0.4rem solid rgb(233, 66, 25);
   padding: 3rem 1.5rem 1.5rem 1.5rem;
@@ -343,7 +339,7 @@ img {
 
 .hint_button {
 
-  background: url("./icons/hint.png") no-repeat;
+  background: url("./Main/icons/hint.png") no-repeat;
   width: 60px;
   height: 60px;
   background-size: 100% 100%;
@@ -359,7 +355,7 @@ img {
 
 
 #submitbuttoncall {
-  background: url("./icons/submit.png") no-repeat;
+  background: url("./Main/icons/submit.png") no-repeat;
   height: 100px;
   width: 200px;
   background-size: 100% 100%;
@@ -418,7 +414,7 @@ img {
 
   body {
 
-    background-image: url("./icons/background.png");
+    background-image: url("./Main/icons/background.png");
     background-repeat: repeat;
     background-size: 1537px 700px;
     max-width: 400px;
@@ -427,7 +423,7 @@ img {
 
   .mobilecolumn {
 
-    margin-left: 1.0rem;
+    margin-left: 1.3rem;
 
   }
 
@@ -531,7 +527,7 @@ img {
 
   .xunbaoIcon {
     width: 95%;
-    margin-top: 5.5rem;
+    margin-top: 1rem;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -611,7 +607,7 @@ img {
 
   .hint_button {
 
-    background: url("./icons/hint.png") no-repeat;
+    background: url("./Main/icons/hint.png") no-repeat;
     width: 35px;
     height: 35px;
     background-size: 100% 100%;
@@ -627,7 +623,7 @@ img {
 
 
   #submitbuttoncall {
-    background: url("./icons/submit.png") no-repeat;
+    background: url("./Main/icons/submit.png") no-repeat;
     height: 50px;
     width: 100px;
     background-size: 100% 100%;
@@ -651,8 +647,9 @@ img {
   }
 
   .userimageis {
-    padding-left: 74px;
-    margin-top: 1rem;
+    padding-left: 40px;
+    margin-top: 0rem;
+    width: 72%;
 
   }
 
@@ -662,6 +659,6 @@ img {
   }
 
   .questionpageimg {
-    margin-right: 10px;
+    margin-right: 1.4rem;
   }
 }

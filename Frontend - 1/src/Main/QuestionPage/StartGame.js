@@ -1,13 +1,14 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import Uppericons from './uppericons'
-import Lowericons from './lowericons'
-import MobileUpper from './UpperMobile'
-import LowerMobile from './LowerMobile'
-const Rules = () => {
+import Uppericons from '../MainLayout/uppericons'
+import Lowericons from '../MainLayout/lowericons'
+import MobileUpper from '../MainLayout/MobileView/UpperMobile'
+import LowerMobile from '../MainLayout/MobileView/LowerMobile'
+import {Link} from 'react-router-dom'
+const StartGame = () => {
     return (
 
-        <div className = "main-layout" >
+        <div className = "StartGame" className="mobilecolumn">>
         <br />
         <div>
            < MobileUpper />
@@ -21,7 +22,7 @@ const Rules = () => {
         <div  className="RulesContainer">
         
         
-        <ol className="RulesList">
+        <ol className="RulesListStartGame" >
         <li>For every wrong answer their is negative marking</li>
         <li>Every time someone befores you gets right answer the max points of that question lowers</li>
         <li>Every hint lowers the max points of that question to 30</li>
@@ -31,8 +32,10 @@ const Rules = () => {
         <li>Maximum points for a right answer are 100</li>
         <li>You can get less than max points</li>
         </ol>
-        
-        
+
+        <Link to='./QuestionPage'>
+        <img src={require('../icons/START THE GAME.png')} className="StartTheGame"  />
+        </Link>  
         
         </div>
          
@@ -52,4 +55,4 @@ const Rules = () => {
             );
 }
 
-export default Rules;
+export default StartGame;

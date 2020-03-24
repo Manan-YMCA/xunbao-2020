@@ -2,10 +2,10 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import Uppericons from './uppericons'
 import Lowericons from './lowericons'
-import MobileUpper from './UpperMobile'
-import LowerMobile from './LowerMobile'
+import MobileUpper from './MobileView/UpperMobile'
+import LowerMobile from './MobileView/LowerMobile'
 import {Link} from 'react-router-dom'
-import Rules from './Rules'
+import Rules from '../QuestionPage/Rules'
 import $ from 'jquery';
 import User from './user'
 import Usertext from './usertext'
@@ -15,6 +15,7 @@ const MainLayout = () => {
 
         <div className = "main-layout" className="mobilecolumn">
         <br />
+        
         <div>
            < MobileUpper />
         </div>
@@ -27,7 +28,7 @@ const MainLayout = () => {
         <div className="col3 userimageis">
         <User />
         </div>
-        <div className="col3 usertextis"  >
+        <div className="col3 usertextis hide" >
         <Usertext />
         </div>
         <img src = {
@@ -38,7 +39,7 @@ const MainLayout = () => {
         
          <img src = {
             require('../icons/on_li_tr_hnt.png')}className = "xunbaoText" / >
-        <Link to='./StartGame'>        
+        <Link to='../QuestionPage/StartGame'>        
         <img src = {
             require('../icons/play gold.png')}className = "startButton" / >
       </Link>

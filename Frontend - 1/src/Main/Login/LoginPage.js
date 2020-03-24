@@ -49,13 +49,13 @@ class LoginPage extends React.Component {
         
         <div className="logincolumn">
         <img src = {
-            require('../icons/xunbao text.png')}className = "xunbaoIcon" / >
+            require('../icons/xunbao text.png')} className = "xunbaoIcon" / >
         
         <img src = {
-            require('../icons/underline.png')}className = "underlineIcon" / >
+            require('../icons/underline.png')} className = "underlineIcon" / >
         
          <img src = {
-            require('../icons/on_li_tr_hnt.png')}className = "xunbaoText" / >
+            require('../icons/on_li_tr_hnt.png')} className = "xunbaoText" / >
          
          <Facebook />  
       </div>

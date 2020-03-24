@@ -18,7 +18,8 @@ class Modal extends React.Component {
             dataType: 'json',
             url: "https://mananxunbao.herokuapp.com/api/question",
             headers: {
-              "Authorization":"Bearer " + localStorage.getItem("token")
+              "Authorization":"Bearer " + localStorage.getItem("token"),
+               fid : localStorage.getItem("facebookid")   
             }
           }).done(function (data) {
 
@@ -44,6 +45,7 @@ class Modal extends React.Component {
           cache: false,
           headers: {
               "Authorization":"Bearer " + localStorage.getItem("token")
+              
             },
           data: JSON.stringify({
               fid : localStorage.getItem("facebookid"),

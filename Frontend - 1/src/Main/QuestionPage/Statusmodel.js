@@ -6,13 +6,7 @@ class Statusmodel extends React.Component {
   componentDidMount() {
       
       
-      
-      
-      
-      
-      
-      
-      
+ 
        
       
   }
