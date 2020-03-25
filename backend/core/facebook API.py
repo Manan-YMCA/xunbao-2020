@@ -10,12 +10,11 @@ def fb_get_fid(input_token, access_token):
     print(data)
     # return fid
 
-input_token = 'EAALjHcMKUWYBAHCYrkJ7hNWw2OP2PK9jNvc6e8vJd8XNTgpMX5luXRbwulcCgGxEdDRLqSdVcaca0hr32aDiVZB0sbtTuhmGVXbZCYZBbMJDhIeD0gXvGpEPJR5U32bfGZAqNFN9eAStF1zF1S51HPO7nwC1MFWDocxZC158ZCN7DHfFdDgnzrOAZASgiK6ZC4DyMfFidx73UmVhjSSXnoiGuvlBaGutxgZAZCbI7SIhoXBQZDZD'
-# access_token = '812666919211366|zlJmX1FBFK_b6KRXLGNA-eoC0w4'
-access_token = '206217843919244|EKo744gwUQJD-NBySyKd-1IUrRM'
+input_token = 'EAADb3jHspS4BAKAWkDFsVvp4B4yUnj7eXcpNWzZAVx4r88tsTfnpED39BzlWvm4RmZBqQdN5u19mP0M7PuhRaDagcxV9YaMSukpf5j2NlMDEMDIbC2ig4Phgtxac9t9dk2dVyxWYvp73Bj4OR3HeZBB7TPXhr5pHUD0ZBSzYrda8b4cwvN8wSWqCxRJqkUEZD'
+access_token = '241747366815022|i6piESu2cds_1NVd4Kl_g_uw_PM'
+# access_token = '206217843919244|EKo744gwUQJD-NBySyKd-1IUrRM'
 
 fb_get_fid(input_token, access_token)
 
 
 
-get_token()
