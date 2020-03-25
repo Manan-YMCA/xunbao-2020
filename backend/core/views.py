@@ -13,7 +13,8 @@ import requests
 def fb_get_fid(input_token):
     URL = "https://graph.facebook.com/debug_token"
     # input_token = 'EAALjHcMKUWYBAHCYrkJ7hNWw2OP2PK9jNvc6e8vJd8XNTgpMX5luXRbwulcCgGxEdDRLqSdVcaca0hr32aDiVZB0sbtTuhmGVXbZCYZBbMJDhIeD0gXvGpEPJR5U32bfGZAqNFN9eAStF1zF1S51HPO7nwC1MFWDocxZC158ZCN7DHfFdDgnzrOAZASgiK6ZC4DyMfFidx73UmVhjSSXnoiGuvlBaGutxgZAZCbI7SIhoXBQZDZD'
-    # access_token = '812666919211366|zlJmX1FBFK_b6KRXLGNA-eoC0w4'
+    # access_token = '241747366815022|i6piESu2cds_1NVd4Kl_g_uw_PM'
+
     access_token = '206217843919244|EKo744gwUQJD-NBySyKd-1IUrRM'
     PARAMS = {'input_token': input_token, 'access_token': access_token}
     r = requests.get(url=URL, params=PARAMS)
@@ -23,13 +24,14 @@ def fb_get_fid(input_token):
 
 def get_token():
     URL = "http://mananxunbao.herokuapp.com/api/token/"
+    # URL = "http://127.0.0.1:8000/api/token/"
     data = {
         'username': 'sanyam',
         'password': 's2ny2mmitt2l',
     }
     r = requests.post(url=URL, data=data)
-    data = r.json()
-    token = data['access']
+    data1 = r.json()
+    token = data1['access']
     return token
 
 def home(request):
@@ -39,17 +41,18 @@ def home(request):
 class JWTViewSet(viewsets.ViewSet):
 
     def create(self, request, *args, **kwargs):
-        token = self.request.query_params.get('input_token', None)
-        fid = fb_get_fid(token)
-        userprofile = UserProfile.objects.get(fid=fid)
-        if userprofile is not None:
-            token = get_token()
-            data = {
-                'fid' : fid,
-                'access' : token,
-            }
-            return Response(data, status=status.HTTP_201_CREATED)
-        else:
+        token = self.request.query_params.get('input', None)
+        try:
+            fid = fb_get_fid(token)
+            userprofile = UserProfile.objects.get(fid=fid)
+            if userprofile is not None:
+                token = get_token()
+                data = {
+                    'fid': fid,
+                    'access': token,
+                }
+                return Response(data, status=status.HTTP_201_CREATED)
+        except:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         # jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
@@ -78,13 +81,13 @@ class UserViewSet(viewsets.ModelViewSet):
         permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
+
 class UserProfileAPIViewSet(viewsets.ModelViewSet):
     serializer_class = UserProfileSerializer
     # queryset = UserProfile.objects.all()
 
     def get_queryset(self):
-        token = self.request.query_params.get('token', None)
-        fid = fb_get_fid(token)
+        fid = self.request.query_params.get('fid', None)
         user = UserProfile.objects.filter(fid=fid)
         return user
 
@@ -92,12 +95,13 @@ class UserProfileAPIViewSet(viewsets.ModelViewSet):
         permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
+
 class LeaderboardAPIViewSet(viewsets.ModelViewSet):
     serializer_class = UserProfileSerializer
     queryset = UserProfile.objects.all()
 
     def get_permissions(self):
-        permission_classes = [AllowAny]
+        permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
 class QuestionAPIView(viewsets.ModelViewSet):
@@ -106,7 +110,6 @@ class QuestionAPIView(viewsets.ModelViewSet):
 
     def get_queryset(self):
         fid = self.request.query_params.get('fid', None)
-        # fid = fb_get_fid(token)
         user = UserProfile.objects.get(fid=fid)
         level = user.level
         return Question.objects.filter(no=level)
