@@ -57,27 +57,10 @@ class User extends React.Component {
     
       
       //--------User Details-----------------
-            
-       $.ajax({
-
-            type: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            url: "https://mananxunbao.herokuapp.com/api/userprofile/",
-            headers: {
-              "Authorization":"Bearer " + localStorage.getItem("token")
-            }
-            
-           
-          }).done(function (data) {
-
-            
-            var obj = JSON.parse(JSON.stringify(data));
-            console.log(obj);
+      
             $("#user_text").append(localStorage.getItem("fullname"));
             $("#user_image").attr("src", localStorage.getItem("userimg"));
 
-          })
         }
 
       

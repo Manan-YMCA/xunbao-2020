@@ -39,7 +39,7 @@ const MainLayout = () => {
         
          <img src = {
             require('../icons/on_li_tr_hnt.png')}className = "xunbaoText" / >
-        <Link to='../QuestionPage/StartGame'>        
+        <Link to='../StartGame/StartGame'>        
         <img src = {
             require('../icons/play gold.png')}className = "startButton" / >
       </Link>

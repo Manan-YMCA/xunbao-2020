@@ -3,8 +3,8 @@ import LoginPage from './Login/LoginPage';
 import MainLayout from './MainLayout/MainLayout';
 import Developers from './Developers/Developers'
 import Leaderboard from './Leaderboard/Leaderboard'
-import Rules from './QuestionPage/Rules'
-import StartGame from './QuestionPage/StartGame'
+import Rules from './Rules/Rules'
+import StartGame from './StartGame/StartGame'
 import Questionpage from './QuestionPage/Questionpage'
 
 
