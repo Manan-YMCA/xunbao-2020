@@ -52,6 +52,9 @@ class HintModel(models.Model):
 
     def save(self, *args, **kwargs):
         self.user = UserProfile.objects.get(fid=self.fid)
+        level = self.user.level
+        self.ques = Question.objects.get(no=level)
+
         super().save(*args, **kwargs)
 
 
