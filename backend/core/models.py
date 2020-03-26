@@ -66,7 +66,7 @@ class Submission(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, blank=True, null=True)
     # user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     fid = models.CharField(max_length=100, default=None, blank=True, null=True)
-    ques = models.ForeignKey(Question, on_delete=models.CASCADE, default=None)
+    ques = models.ForeignKey(Question, on_delete=models.CASCADE, default=None, blank=True, null=True)
     answer = models.CharField(max_length=100)
     date = models.DateTimeField(auto_created=True, auto_now_add=True)
     score = models.IntegerField(blank=True, null=True)
