@@ -18,10 +18,12 @@ class Leaderboard extends React.Component {
             type: "GET",
             crossDomain: true,
             dataType: 'json',
-            url: "https://mananxunbao.herokuapp.com/api/userprofile/",
-            headers: {
-              "Authorization":"Bearer " + localStorage.getItem("token")
-            }
+            url: "https://mananxunbao.herokuapp.com/api/leaderboard/",
+             headers: {
+             
+        "Authorization" :"Bearer " + localStorage.getItem("token")
+                 
+        },
             
            
           }).done(function (data) {

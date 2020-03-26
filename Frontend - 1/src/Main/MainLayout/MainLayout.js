@@ -9,10 +9,51 @@ import Rules from '../QuestionPage/Rules'
 import $ from 'jquery';
 import User from './user'
 import Usertext from './usertext'
-const MainLayout = () => {
+class MainLayout extends React.Component {
+  componentDidMount() {
+         
+      console.log(localStorage.getItem("fbtoken"));
+      
+       //--------Getting token-----------------
+      
+         $.ajax({
+          url: 'https://mananxunbao.herokuapp.com/api/jwt/',
+          type: "POST",
+          crossDomain: true,
+          dataType: "json",
+          contentType: "application/json; charset=utf-8",
+          cache: false,
+          data: JSON.stringify({
+          
+              input : localStorage.getItem("fbtoken")
+              
+        }),
+          contentType: "application/json",
+          success: function (data) {
+              
+              console.log(data.access);
+              localStorage.setItem("token",data.access);
+             
+              
+          },
+          error: function () {
+          console.log("error");	
+         
+       
+      }
+  }) 
+      
+      
+      
+      
+      
+  }
+     render() {
     return (
-
-
+    
+    
+    
+    
         <div className = "main-layout" className="mobilecolumn">
         <br />
         
@@ -49,7 +90,7 @@ const MainLayout = () => {
              
         
         </div>
-        < div class = "col-md-2" >
+        < div class = "col-md-2 " >
         <Lowericons />
         </div>
         < div class = "col-md-2" >
@@ -62,6 +103,7 @@ const MainLayout = () => {
 </div>
 
     );
+}
 }
 
 export default MainLayout;

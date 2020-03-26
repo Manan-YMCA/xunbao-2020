@@ -26,7 +26,7 @@ html {
 body {
 
   background-image: url("./Main/icons/background.png");
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: 1537px 800px;
 }
 
@@ -142,7 +142,7 @@ img {
   width: 25%;
 }
 
-.col20 {
+.col10 {
   width: 20%;
   float: left;
 }
@@ -161,6 +161,11 @@ img {
 .col555 {
   float: left;
   width: 7%;
+}
+
+.col80 {
+  float: left;
+  width: 60%;
 }
 
 .mobileiconscssupper {
@@ -366,6 +371,25 @@ img {
   margin-right: auto;
 }
 
+#modeltexthint {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: rgb(240, 10, 137);
+  font-family: Geomancy Extra Bold;
+
+
+
+}
+
+#statustext {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: rgb(17, 224, 62);
+  font-family: Geomancy Extra Bold;
+}
+
 /*===========User Page=========== */
 
 #user_image {
@@ -400,6 +424,50 @@ img {
   color: white;
 }
 
+/*===========Different Mobiles=========== */
+
+@media only screen and (max-width: 365px) and (min-width:340px) {
+
+  .mobilecolumn {
+
+    margin-left: 1.1rem;
+
+  }
+
+
+}
+
+@media only screen and (max-width: 340px) and (min-width:300px) {
+
+  .mobilecolumn {
+
+    margin-left: 1.1rem;
+
+  }
+}
+
+@media only screen and (max-width: 388px) and (min-width:365px) {
+
+  .mobilecolumn {
+
+    margin-left: 1.1rem;
+
+  }
+}
+
+
+
+@media only screen and (max-width: 500px) and (min-width:388px) {
+
+  .mobilecolumn {
+
+    margin-left: 3.5rem;
+
+  }
+}
+
+
+
 
 /*===========Mobile Page=========== */
 @media only screen and (max-width: 500px) {
@@ -420,12 +488,6 @@ img {
     max-width: 400px;
   }
 
-
-  .mobilecolumn {
-
-    margin-left: 1.3rem;
-
-  }
 
   .hide {
     display: none;

@@ -6,33 +6,29 @@ import Facebook from './facebook'
 
 class LoginPage extends React.Component {
   componentDidMount() {
+      //--------Posting Fb Details-----------------
       
-        
-      //--------Getting token-----------------
-         $.ajax({
-          url: 'https://mananxunbao.herokuapp.com/api/token/',
+      $.ajax({
+          url: 'https://mananxunbao.herokuapp.com/api/userprofile/',
           type: "POST",
           crossDomain : true,
           dataType: 'json',
+          
           data: JSON.stringify( {
-              username: 'sanyam',
-              password: 's2ny2mmitt2l'
+              name:localStorage.getItem("fullname"),
+              pic:localStorage.getItem("userimg"),
+              fid:localStorage.getItem("facebookid")
             }),
           contentType: "application/json",
           success: function (data) {
-            
-              var tokenvalue = data.access;
-              console.log(tokenvalue);
-              localStorage.setItem("token",tokenvalue);
-             
               
-          },
-          error: function () {
-          	
-          localStorage.clear();
-       
-      }
-  }) 
+             console.log("success posting");
+              
+          }
+  })
+    
+        
+     
       
   }
 

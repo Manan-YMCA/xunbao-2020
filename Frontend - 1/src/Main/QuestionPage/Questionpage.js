@@ -12,29 +12,34 @@ import Statusmodel from "./Statusmodel";
 
 class Questionpage extends React.Component {
   componentDidMount() {
-    var number = 0;
+    
       
     //--------Calling of Question-------------
       
     $.ajax({
+    
+      url: "http://mananxunbao.herokuapp.com/api/question/?fid="+localStorage.getItem("facebookid"),    
       type: "GET",
       crossDomain: true,
       dataType: "json",
-      url: "https://mananxunbao.herokuapp.com/api/question",
+      contentType: "application/json; charset=utf-8",
+      cache: false,    
       headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-        fid : localStorage.getItem("facebookid") 
+          
+       "Authorization" :"Bearer " + localStorage.getItem("token")
+          
       }
     }).done(function(data) {
       var obj = JSON.parse(JSON.stringify(data));
       console.log(obj);
 
-      $("#Question").append(obj[number].ques);
-      localStorage.setItem("quesurl", obj[number].url);
-      localStorage.setItem("questionnumber", obj[number].no);
+      $("#Question").append(obj[0].ques);
+      
+      localStorage.setItem("hintis",obj[0].hint)
         
     });
 
+      
     //---------Submit and Check------------
 
     $("#submitbuttoncall").on("click", function() {
@@ -48,7 +53,7 @@ class Questionpage extends React.Component {
         contentType: "application/json; charset=utf-8",
         cache: false,
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("token")
+            "Authorization" :"Bearer " + localStorage.getItem("token")
         },
         data: JSON.stringify({
           fid: localStorage.getItem("facebookid"),
@@ -59,17 +64,18 @@ class Questionpage extends React.Component {
           console.log(data);
 
           var statusis = data.responseJSON;
-
+          console.log(data.responseJSON);
           //------------Right Answer------------------
 
           if (statusis&&statusis.response!=="Wrong") { 
             $("#statustext").append("Correct");
+              window.location = "./QuestionPage"
             
           } else {
             //------------Wrong Answer------------------
 
             $("#statustext").append("Wrong!");
-            
+            window.location = "./QuestionPage"
           }
         }
       });

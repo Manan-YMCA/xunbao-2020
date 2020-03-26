@@ -11,7 +11,8 @@ export default class Facebook extends Component{
        userID:'',
        name:'',
        email:'',
-       picture:''
+       picture:'',
+       facebooktoken:''
        
    }
    
@@ -23,7 +24,8 @@ export default class Facebook extends Component{
            userID : response.userID,
            name : response.name,
            email : response.email,
-           picture : response.picture.data.url
+           picture : response.picture.data.url,
+           facebooktoken :response.accessToken
        });
    }
   
@@ -39,6 +41,7 @@ export default class Facebook extends Component{
             localStorage.setItem("fullname",this.state.name);
             localStorage.setItem("userimg",this.state.picture);
             localStorage.setItem("facebookid",this.state.userID);
+            localStorage.setItem("fbtoken",this.state.facebooktoken);
             
         }
         else{

@@ -9,29 +9,11 @@ class Modal extends React.Component {
       
       $('#myBtn').on("click",function() {
           document.getElementById("modeltexthint").innerHTML = "";
-      //--------Call Hint--------------------------------------------    
-          
-          $.ajax({
-
-            type: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            url: "https://mananxunbao.herokuapp.com/api/question",
-            headers: {
-              "Authorization":"Bearer " + localStorage.getItem("token"),
-               fid : localStorage.getItem("facebookid")   
-            }
-          }).done(function (data) {
-
-            var obj = JSON.parse(JSON.stringify(data));
-            console.log(obj);
-          
-            
-            $("#modeltexthint").append(obj[localStorage.getItem("questionnumber")].hint);
-            console.log(obj[localStorage.getItem("questionnumber")].hint);
-
-          })
       
+            
+            $("#modeltexthint").append(localStorage.getItem("hintis"));
+            
+
     
           
      //--------Post Hint--------------------------------------------         
@@ -43,19 +25,19 @@ class Modal extends React.Component {
           dataType: "json",
           contentType: "application/json; charset=utf-8",
           cache: false,
-          headers: {
-              "Authorization":"Bearer " + localStorage.getItem("token")
-              
-            },
+         headers: {
+       "Authorization" :"Bearer " + localStorage.getItem("token")
+          
+      },
           data: JSON.stringify({
-              fid : localStorage.getItem("facebookid"),
-              hintviewed : true,
-              ques : localStorage.getItem("quesurl"),
               
+          fid: localStorage.getItem("facebookid")
+          
               
             }),
           complete: function (data) {
-          console.log("Success");
+              
+          console.log(data);
     }
   });
     });

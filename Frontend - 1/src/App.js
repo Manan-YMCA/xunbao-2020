@@ -1,8 +1,7 @@
 import React from 'react';
 import AppRouter from './Main/AppRouter'
 import './loader.js'
-
-import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 function App() {
   return ( 

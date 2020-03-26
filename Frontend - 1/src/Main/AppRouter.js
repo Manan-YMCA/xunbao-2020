@@ -6,8 +6,6 @@ import Leaderboard from './Leaderboard/Leaderboard'
 import Rules from './Rules/Rules'
 import StartGame from './StartGame/StartGame'
 import Questionpage from './QuestionPage/Questionpage'
-
-
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
 
 function AppRouter() {

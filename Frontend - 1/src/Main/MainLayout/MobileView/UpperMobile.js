@@ -7,7 +7,7 @@ const MobileUpper = () => {
         
         <div class="row">
         <div className="col4 hideMobile" >
-        <Link to='.../Developers/Developers'>
+        <Link to='../Developers/Developers'>
         <img src={require('./mobicons/dev gold.png')} className="mobileiconscssupper" />
         </Link>
         </div>
@@ -18,7 +18,7 @@ const MobileUpper = () => {
         </div>
         
         <div className="col4 hideMobile">
-                  <Link to='.../Leaderboard/Leaderboard'>
+                  <Link to='../Leaderboard/Leaderboard'>
         <img src={require('./mobicons/win gold.png')} className="mobileiconscssupper" />
         </Link>
         </div>
