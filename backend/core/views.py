@@ -53,7 +53,6 @@ class JWTViewSet(viewsets.ViewSet):
                 }
                 return Response(data, status=status.HTTP_201_CREATED)
         except Exception as e:
-            print(e)
             return Response(status=status.HTTP_404_NOT_FOUND)
 
 
