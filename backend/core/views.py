@@ -4,11 +4,12 @@ from rest_framework import viewsets, status
 from rest_framework.permissions import IsAdminUser, AllowAny
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
+import json
 
 from .serializers import UserSerializer, SubmissionSerializer, QuestionSerializer, UserProfileSerializer, HintSerializer
 from .models import Question, Submission, UserProfile, HintModel
 import requests
-
 
 def fb_get_fid(input_token):
     URL = "https://graph.facebook.com/debug_token"
@@ -19,21 +20,17 @@ def fb_get_fid(input_token):
     PARAMS = {'input_token': input_token, 'access_token': access_token}
     r = requests.get(url=URL, params=PARAMS)
     data = r.json()
-    fid = data['data']['user_id']
-    return fid
+    return data["data"]
 
 
-def get_token():
-    URL = "http://mananxunbao.herokuapp.com/api/token/"
-    # URL = "http://127.0.0.1:8000/api/token/"
-    data = {
-        'username': 'sanyam',
-        'password': 's2ny2mmitt2l',
+
+def get_token(user):
+    refresh = RefreshToken.for_user(user)
+
+    return {
+        'refresh': str(refresh),
+        'access': str(refresh.access_token),
     }
-    r = requests.post(url=URL, data=data)
-    data1 = r.json()
-    token = data1['access']
-    return token
 
 
 def home(request):
@@ -41,20 +38,22 @@ def home(request):
 
 
 class JWTViewSet(viewsets.ViewSet):
-
     def create(self, request, *args, **kwargs):
-        token = self.request.query_params.get('input', None)
+        body_unicode = request.body.decode('utf-8')
+        body_data = json.loads(body_unicode)
+        token=body_data['input']
         try:
             fid = fb_get_fid(token)
-            userprofile = UserProfile.objects.get(fid=fid)
+            userprofile = UserProfile.objects.get(fid=fid["user_id"])
             if userprofile is not None:
-                token = get_token()
+                token = get_token(userprofile)
                 data = {
                     'fid': fid,
                     'access': token,
                 }
                 return Response(data, status=status.HTTP_201_CREATED)
-        except:
+        except Exception as e:
+            print(e)
             return Response(status=status.HTTP_404_NOT_FOUND)
 
 
