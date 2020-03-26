@@ -10,7 +10,7 @@ class UserProfile(models.Model):
     score = models.IntegerField(default=0)
     level = models.IntegerField(default=1)
     submission_count = models.IntegerField(default=0)
-    fid = models.SlugField(max_length=100, default=None, blank=False, null=False, unique=True)
+    fid = models.CharField(max_length=100, default=None, blank=False, null=False, unique=True)
 
     class Meta:
         ordering = ['-score', '-level', 'submission_count']
@@ -44,9 +44,6 @@ class HintModel(models.Model):
     fid = models.CharField(max_length=100, default=None, blank=True, null=True)
     hintviewed = models.BooleanField(default=True)
 
-    class Meta:
-        unique_together = (("ques", "user"),)
-
     def __str__(self):
         return str(self.user)
 
@@ -54,7 +51,6 @@ class HintModel(models.Model):
         self.user = UserProfile.objects.get(fid=self.fid)
         level = self.user.level
         self.ques = Question.objects.get(no=level)
-
         super().save(*args, **kwargs)
 
 
