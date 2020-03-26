@@ -176,10 +176,6 @@ SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [
         ('link', 'profile_url'),
     ]
 
-# SOCIAL_AUTH_INSTAGRAM_KEY = YOUR_CLIENT_ID  # Client ID
-# SOCIAL_AUTH_INSTAGRAM_SECRET = YOUR_CLIENT_SECRET  # Client SECRET
-# SOCIAL_AUTH_INSTAGRAM_EXTRA_DATA = [('user','user'),
-#                                     ]
 
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',

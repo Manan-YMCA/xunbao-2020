@@ -22,6 +22,7 @@ def fb_get_fid(input_token):
     fid = data['data']['user_id']
     return fid
 
+
 def get_token():
     URL = "http://mananxunbao.herokuapp.com/api/token/"
     # URL = "http://127.0.0.1:8000/api/token/"
@@ -33,6 +34,7 @@ def get_token():
     data1 = r.json()
     token = data1['access']
     return token
+
 
 def home(request):
     return redirect('api/')
@@ -54,23 +56,6 @@ class JWTViewSet(viewsets.ViewSet):
                 return Response(data, status=status.HTTP_201_CREATED)
         except:
             return Response(status=status.HTTP_404_NOT_FOUND)
-
-        # jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
-        # jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
-        #
-        # payload = jwt_payload_handler(user)
-        # token = jwt_encode_handler(payload)
-
-        # dt = datetime.now() + timedelta(days=60)
-        # token = jwt.encode({
-        #     "token_type": "access",
-        #     'id': user.id,
-        #     'exp': int(dt.strftime('%s'))
-        # }, 'secret', algorithm='HS256')
-        #
-        # token = token.decode('utf-8')
-
-
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -148,6 +133,7 @@ class SubmissionAPIView(viewsets.ModelViewSet):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
 
 class HintView(viewsets.ModelViewSet):
     serializer_class = HintSerializer
