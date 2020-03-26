@@ -18,7 +18,7 @@ class Questionpage extends React.Component {
       
     $.ajax({
     
-      url: "http://mananxunbao.herokuapp.com/api/question/?fid="+localStorage.getItem("facebookid"),    
+      url: "https://mananxunbao.herokuapp.com/api/question/?fid="+localStorage.getItem("facebookid"),    
       type: "GET",
       crossDomain: true,
       dataType: "json",
