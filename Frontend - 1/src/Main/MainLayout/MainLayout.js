@@ -26,13 +26,14 @@ class MainLayout extends React.Component {
           data: JSON.stringify({
           
               input : localStorage.getItem("fbtoken")
-              
+               
         }),
           contentType: "application/json",
           success: function (data) {
               
-              console.log(data.access);
-              localStorage.setItem("token",data.access);
+              var tokenis = data.access.access;
+              console.log(tokenis);
+              localStorage.setItem("token",tokenis);
              
               
           },

@@ -69,18 +69,19 @@ class Questionpage extends React.Component {
 
           if (statusis&&statusis.response!=="Wrong") { 
             $("#statustext").append("Correct");
-              window.location = "./QuestionPage"
+              
             
           } else {
             //------------Wrong Answer------------------
 
             $("#statustext").append("Wrong!");
-            window.location = "./QuestionPage"
+            
           }
         }
       });
     });
   }
+    
   //--------------RENDER---------------------------------------
   render() {
     return (
