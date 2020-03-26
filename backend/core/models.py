@@ -79,7 +79,7 @@ class Submission(models.Model):
     def save(self, *args, **kwargs):
         self.user = UserProfile.objects.get(fid=self.fid)
         level = self.user.level
-        self.ques = Submission.objects.get(no=level)
+        self.ques = Question.objects.get(no=level)
         if HintModel.objects.filter(user=self.user, hintviewed=True):
             self.hintviewed = True
 
