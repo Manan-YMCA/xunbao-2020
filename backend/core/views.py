@@ -94,8 +94,8 @@ class QuestionAPIView(viewsets.ModelViewSet):
     # queryset = Question.objects.all()
 
     def get_queryset(self):
-        fid = self.request.query_params.get('fid', None)
-        user = UserProfile.objects.get(fid=fid)
+        id = self.request.user.id
+        user = UserProfile.objects.get(id=id)
         level = user.level
         return Question.objects.filter(no=level)
 
