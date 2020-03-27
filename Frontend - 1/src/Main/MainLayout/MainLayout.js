@@ -32,7 +32,6 @@ class MainLayout extends React.Component {
           success: function (data) {
               
               var tokenis = data.access.access;
-              console.log(tokenis);
               localStorage.setItem("token",tokenis);
              
               

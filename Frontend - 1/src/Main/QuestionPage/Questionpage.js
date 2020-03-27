@@ -9,16 +9,9 @@ import User from "../MainLayout/user";
 import $ from "jquery";
 import Modal from "./modal";
 import Statusmodel from "./Statusmodel";
-const ReactMarkdown = require('react-markdown')
 
 
 class Questionpage extends React.Component {
-  constructor(props){
-    super(props)
-    this.state={
-      content:"",
-    }
-  }
   componentDidMount() {
     var quesno;
     //--------Calling of Question-------------
@@ -39,12 +32,11 @@ class Questionpage extends React.Component {
        "Authorization" :"Bearer " + localStorage.getItem("token")
           
       }
-    }).done((data)=> {
+    }).done(function(data) {
       var obj = JSON.parse(JSON.stringify(data));
-      console.log(obj);
+      
 
       $("#Question").append(obj[0].ques);
-      this.setState({content:obj[0].ques})
       quesno = obj[0].no;
       localStorage.setItem("hintis",obj[0].hint);
         
@@ -54,6 +46,7 @@ class Questionpage extends React.Component {
     //---------Submit and Check------------
 
     $("#submitbuttoncall").on("click", function() {
+      document.getElementById("Question").innerHTML = "";
       document.getElementById("statustext").innerHTML = "";
       $.ajax({
         url: "https://mananxunbao.herokuapp.com/api/submission/",
@@ -71,10 +64,10 @@ class Questionpage extends React.Component {
           ques: localStorage.getItem("quesurl")
         }),
         complete: function(data) {
-          console.log(data);
+          
 
           var statusis = data.responseJSON;
-          console.log(data.responseJSON);
+          
           //------------Right Answer------------------
 
           if (statusis&&statusis.response!=="Wrong") { 
@@ -127,7 +120,9 @@ class Questionpage extends React.Component {
               <br />
 
               <div id="questiontext">
-                <ReactMarkdown source={this.state.content} className="QuestionText" />
+                <h1 className="QuestionText" id="Question">
+                  {" "}
+                </h1>
                 <div className="col95">
                   <input
                     type="text"

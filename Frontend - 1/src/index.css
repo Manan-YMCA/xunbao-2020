@@ -491,6 +491,9 @@ img {
 
   }
 
+  .questionpageimg {
+    margin-right: 1.3rem;
+  }
 
 }
 
@@ -501,6 +504,10 @@ img {
     margin-left: 1.85rem;
 
   }
+
+  .questionpageimg {
+    margin-right: 0.3rem;
+  }
 }
 
 @media only screen and (max-width: 388px) and (min-width:365px) {
@@ -510,6 +517,13 @@ img {
     margin-left: 1.85rem;
 
   }
+
+  .questionpageimg {
+    margin-right: 1.1rem;
+  }
+
+
+
 }
 
 
@@ -520,6 +534,10 @@ img {
 
     margin-left: 3.4rem;
 
+  }
+
+  .questionpageimg {
+    margin-right: 0.6rem;
   }
 }
 
@@ -724,6 +742,14 @@ img {
     margin-top: -0.3rem;
   }
 
+  .QuestionText {
+    color: #Fda212;
+    font-family: Geomancy Extra Bold;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
   .hint_button {
 
     background: url("./Main/icons/hint.png") no-repeat;
@@ -760,7 +786,7 @@ img {
     border: 1px solid #ccc;
     border-radius: 3px;
     box-sizing: border-box;
-    font-family: Geomancy Extra Bold;
+    font-weight: 600;
     margin-top: 1.5rem;
 
   }
@@ -777,9 +803,7 @@ img {
     margin-top: 1rem;
   }
 
-  .questionpageimg {
-    margin-right: 1.4rem;
-  }
+
 
   #statustext {
     text-align: center;

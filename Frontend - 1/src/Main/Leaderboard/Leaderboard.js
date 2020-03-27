@@ -30,11 +30,7 @@ class Leaderboard extends React.Component {
 
             
             var obj = JSON.parse(JSON.stringify(data));
-            console.log(obj);
-            
            
-            obj = JSON.parse(JSON.stringify(data));
-            console.log(obj);
 
             var details = "";
             for (var i = 0; i < obj.length; i++) {
