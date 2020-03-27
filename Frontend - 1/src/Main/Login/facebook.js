@@ -19,6 +19,7 @@ export default () => {
         autoLoad={false}
         fields="name,email,picture"
         callback={responseFacebook}
+        disableMobileRedirect={true}
       />{" "}
     </div>
   );
