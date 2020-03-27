@@ -53,7 +53,8 @@ class HintModel(models.Model):
         level = self.user.level
         self.ques = Question.objects.get(no=level)
         self.hint = self.ques.hint
-
+        if self.hint.lower() == 'not available':
+            self.hintviewed = False
         try:
             prev = HintModel.objects.get(user=self.user, ques=self.ques)
             prev.delete()
@@ -102,10 +103,11 @@ class Submission(models.Model):
 
         elif self.hintviewed == True:
             if Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=True).values_list('score',
-                                                                                                           flat=True):
+                                                                                                           flat=True) == 1:
                 scores = Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=True).values_list('score',
                                                                                                            flat=True)
                 score = min(scores) + 1
+
             else: score = 101
         else:
             score = 101
