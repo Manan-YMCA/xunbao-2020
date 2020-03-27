@@ -100,17 +100,17 @@ class Submission(models.Model):
         if HintModel.objects.filter(user=self.user, ques=self.ques, hintviewed=True):
             self.hintviewed = True
 
-        max_score = 100
+        max_score = 101
         scores_without_hint = Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=False).values_list('score',
                                                                                                            flat=True)
         scores_with_hint = Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=True).values_list('score',flat=True)
 
         if len(scores_without_hint) == 0:
-            score_hint = 100
+            score_hint = 101
         else:
             score_hint = min(scores_with_hint)
         if len(scores_with_hint) == 0:
-            score_no_hint = 80
+            score_no_hint = 85
         else:
             score_no_hint = min(scores_with_hint)
 
