@@ -88,7 +88,11 @@ class Submission(models.Model):
         if len(scores):
             score = min(scores)
         else:
-            score = 101
+            if Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=True).values_list('score',
+                                                                                                           flat=True):
+                score = 81
+            else: score = 101
+
         answers = Answer.objects.filter(ques=self.ques).values_list('answer', flat=True)
 
         if self.answer.lower() in answers and self.user.submission_count <= 2500:
