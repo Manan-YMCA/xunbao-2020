@@ -71,6 +71,10 @@ class Answer(models.Model):
     ques = models.ForeignKey(Question, on_delete=models.CASCADE)
     answer = models.CharField(max_length=100)
 
+    def save(self, *args, **kwargs):
+        self.answer = self.answer.lower()
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return str(self.answer)
 
@@ -102,6 +106,8 @@ class Submission(models.Model):
             score = min(scores)
 
         elif self.hintviewed == True:
+            if len(scores) >0:
+                score = min(scores) - 19
             if Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=True).values_list('score',
                                                                                                            flat=True) == 1:
                 scores = Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=True).values_list('score',
