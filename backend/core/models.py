@@ -53,7 +53,17 @@ class HintModel(models.Model):
         level = self.user.level
         self.ques = Question.objects.get(no=level)
         self.hint = self.ques.hint
+
+        try:
+            prev = HintModel.objects.get(user=self.user, ques=self.ques)
+            prev.delete()
+        except:
+            pass
+
         super().save(*args, **kwargs)
+
+    # class Meta:
+    #     unique_together = ['ques', 'user']
 
 
 class Answer(models.Model):
