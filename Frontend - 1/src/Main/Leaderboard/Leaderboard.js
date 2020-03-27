@@ -37,7 +37,7 @@ class Leaderboard extends React.Component {
             console.log(obj);
 
             var details = "";
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < obj.length; i++) {
 
               details +=
                 `
@@ -97,7 +97,7 @@ class Leaderboard extends React.Component {
         </div>
         <div class="col-md-8">
         
-       <div  className="RulesContainer">
+       <div  className="LeaderboardContainer">
         <h1 className="DevelopersText">  Leadeboard  </h1>
         <hr className="Developershr" />
         <br/>
@@ -116,11 +116,21 @@ class Leaderboard extends React.Component {
         </div>
         </div>
         
+        <div id="wrapper">
+        <div class="scrollbar" id="style-2">
+        <div class="force-overflow">
         
         <div id="LeaderboardStats" >
       
        
         </div>
+        
+        </div>
+        </div>
+        </div>
+        
+        
+       
        
         </div>
         

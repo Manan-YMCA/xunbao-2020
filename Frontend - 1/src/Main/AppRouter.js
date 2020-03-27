@@ -6,6 +6,7 @@ import Leaderboard from './Leaderboard/Leaderboard'
 import Rules from './Rules/Rules'
 import StartGame from './StartGame/StartGame'
 import Questionpage from './QuestionPage/Questionpage'
+import Winners from './Winners/Winners'
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
 
 function AppRouter() {
@@ -20,6 +21,7 @@ function AppRouter() {
            <Route path="/Rules" component={Rules}/>
            <Route path="/StartGame" component={StartGame}/>
            <Route path="/Questionpage" component={Questionpage}/>
+           <Route path="/Winners" component={Winners}/>
       </div>
       </Switch>
       </Router>

@@ -10,12 +10,15 @@ import $ from "jquery";
 import Modal from "./modal";
 import Statusmodel from "./Statusmodel";
 
+
 class Questionpage extends React.Component {
   componentDidMount() {
-    
-      
+    var quesno;
     //--------Calling of Question-------------
-      
+    if(quesno>30){
+       window.location="../Winners/Winners" ;
+    } 
+      else{
     $.ajax({
     
       url: "https://mananxunbao.herokuapp.com/api/question/?fid="+localStorage.getItem("facebookid"),    
@@ -34,8 +37,8 @@ class Questionpage extends React.Component {
       console.log(obj);
 
       $("#Question").append(obj[0].ques);
-      
-      localStorage.setItem("hintis",obj[0].hint)
+      quesno = obj[0].no;
+      localStorage.setItem("hintis",obj[0].hint);
         
     });
 
@@ -68,19 +71,31 @@ class Questionpage extends React.Component {
           //------------Right Answer------------------
 
           if (statusis&&statusis.response!=="Wrong") { 
-            $("#statustext").append("Correct");
+            $("#statustext").append("Well Done! Correct");
               
             
           } else {
-            //------------Wrong Answer------------------
-
-            $("#statustext").append("Wrong!");
+            //------------Wrong Answer Abuses------------------
+              
+              
+              
+             var abusesarr = ["Are you always this stupid, or are you making a special effort today?", "Somewhere out there is a tree working hard to replace the oxygen you wasted, now go apologize to it.", "Stupidity is not a crime, if it is, you’ll end up in jail.","Error 404 brain not found aaya Tumse na ho paayega"
+             ,"You are a sad strange little man, and you have my pity.","After all this time, is that what you came up with? ",
+            "You must have been born on a highway because that's where most accidents happen.","Am I a joke to you?","Yeh kya bawasir bana diye ","Only two things are infinite-- the universe and your stupidity, and I'm not so sure about the former."];
+    
+            var num = Math.floor(Math.random() * 10);
+    
+            var yourabuse =`
+            <p class="wronganswertext">Wrong Answer!<br>`+abusesarr[num]+`</p>`  ; 
+            
+   
+            $("#statustext").append(yourabuse);
             
           }
         }
       });
     });
-  }
+  }}
     
   //--------------RENDER---------------------------------------
   render() {
