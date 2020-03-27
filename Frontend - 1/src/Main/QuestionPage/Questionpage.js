@@ -36,9 +36,7 @@ function Questionpage(props) {
         }
       }).done(data => {
         var obj = JSON.parse(JSON.stringify(data));
-        this.setState({
-          question: obj[0].ques
-        });
+        setQuestion(obj[0].ques);
         quesno = obj[0].no;
         localStorage.setItem("hintis", obj[0].hint);
       });
