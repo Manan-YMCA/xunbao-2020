@@ -42,6 +42,8 @@ class Questionpage extends React.Component {
     }).done((data)=> {
       var obj = JSON.parse(JSON.stringify(data));
       console.log(obj);
+
+      $("#Question").append(obj[0].ques);
       this.setState({content:obj[0].ques})
       quesno = obj[0].no;
       localStorage.setItem("hintis",obj[0].hint);
@@ -52,7 +54,6 @@ class Questionpage extends React.Component {
     //---------Submit and Check------------
 
     $("#submitbuttoncall").on("click", function() {
-      document.getElementById("Question").innerHTML = "";
       document.getElementById("statustext").innerHTML = "";
       $.ajax({
         url: "https://mananxunbao.herokuapp.com/api/submission/",
