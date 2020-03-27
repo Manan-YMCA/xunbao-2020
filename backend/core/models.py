@@ -41,6 +41,7 @@ class Question(models.Model):
 class HintModel(models.Model):
     ques = models.ForeignKey(Question, on_delete=models.CASCADE, null=True, blank=True)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
+    hint = models.CharField(max_length=100, default=None, blank=True, null=True)
     fid = models.CharField(max_length=100, default=None, blank=True, null=True)
     hintviewed = models.BooleanField(default=True)
 
@@ -51,6 +52,7 @@ class HintModel(models.Model):
         self.user = UserProfile.objects.get(fid=self.fid)
         level = self.user.level
         self.ques = Question.objects.get(no=level)
+        self.hint = self.ques.hint
         super().save(*args, **kwargs)
 
 

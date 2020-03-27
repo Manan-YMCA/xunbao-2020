@@ -26,7 +26,7 @@ class QuestionSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Question
-        fields = "__all__"
+        fields = ("ques", "no")
 
 
 class SubmissionSerializer(serializers.HyperlinkedModelSerializer):
