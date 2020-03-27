@@ -100,23 +100,19 @@ class Submission(models.Model):
         if HintModel.objects.filter(user=self.user, ques=self.ques, hintviewed=True):
             self.hintviewed = True
 
-        scores = Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=False).values_list('score',
+        max_score = 100
+        scores_without_hint = Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=False).values_list('score',
                                                                                                            flat=True)
-        if len(scores) > 0:
-            score = min(scores)
+        scores_with_hint = Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=True).values_list('score',flat=True)
 
-        elif self.hintviewed == True:
-            if len(scores) >0:
-                score = min(scores) - 19
-            if Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=True).values_list('score',
-                                                                                                           flat=True) == 1:
-                scores = Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=True).values_list('score',
-                                                                                                           flat=True)
-                score = min(scores) + 1
-
-            else: score = 101
+        if len(scores_without_hint) == 0:
+            score_hint = 100
         else:
-            score = 101
+            score_hint = min(scores_with_hint)
+        if len(scores_with_hint) == 0:
+            score_no_hint = 80
+        else:
+            score_no_hint = min(scores_with_hint)
 
         answers = Answer.objects.filter(ques=self.ques).values_list('answer', flat=True)
 
@@ -127,24 +123,20 @@ class Submission(models.Model):
 
             start = HappyHour.objects.all().values_list('start', flat=True)
             end = HappyHour.objects.all().values_list('end', flat=True)
-            hintbool = HintModel.objects.all().filter(user=self.user, ques=self.ques, hintviewed=True)
             now = timezone.now()
 
             #### Marking Scheme ####
 
             if CheckHappyHour(start, now, end):
-                self.score = 100
+                score = 100
             elif self.hintviewed:
-                if score > 40:
-                    self.score = score - 21
-                else:
-                    self.score = 20
+                score = min(score_no_hint, score_hint) - 5
             else:
-                if score > 20:
-                    self.score = score - 1
-                else:
-                    self.score = 20
+                score = min(max_score, scores_without_hint) - 1
 
+            if score < 20:
+                score = 20
+            self.score = score
             self.user.score += self.score
         else:
             self.score = 0
@@ -160,3 +152,88 @@ class HappyHour(models.Model):
 
     def __str__(self):
         return str(self.start.time()) + ' - ' + str(self.end.time())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# PREVIOUS MARKING SCHEME
+
+    # def save(self, *args, **kwargs):
+    #     self.user = UserProfile.objects.get(fid=self.fid)
+    #     level = self.user.level
+    #     self.ques = Question.objects.get(no=level)
+    #     if HintModel.objects.filter(user=self.user, ques=self.ques, hintviewed=True):
+    #         self.hintviewed = True
+    #
+    #     scores = Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=False).values_list('score',
+    #                                                                                                        flat=True)
+    #     if len(scores) > 0:
+    #         score = min(scores)
+    #
+    #     elif self.hintviewed == True:
+    #         if len(scores) >0:
+    #             score = min(scores) - 19
+    #         if Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=True).values_list('score',
+    #                                                                                                        flat=True) == 1:
+    #             scores = Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=True).values_list('score',
+    #                                                                                                        flat=True)
+    #             score = min(scores) + 1
+    #
+    #         else: score = 101
+    #     else:
+    #         score = 101
+    #
+    #     answers = Answer.objects.filter(ques=self.ques).values_list('answer', flat=True)
+    #
+    #     if self.answer.lower() in answers and self.user.submission_count <= 2500:
+    #         self.response = 'Correct'
+    #         self.user.level += 1
+    #         self.user.submission_count += 1
+    #
+    #         start = HappyHour.objects.all().values_list('start', flat=True)
+    #         end = HappyHour.objects.all().values_list('end', flat=True)
+    #         hintbool = HintModel.objects.all().filter(user=self.user, ques=self.ques, hintviewed=True)
+    #         now = timezone.now()
+    #
+    #         #### Marking Scheme ####
+    #
+    #         if CheckHappyHour(start, now, end):
+    #             self.score = 100
+    #         elif self.hintviewed:
+    #             if score > 40:
+    #                 self.score = score - 21
+    #             else:
+    #                 self.score = 20
+    #         else:
+    #             if score > 20:
+    #                 self.score = score - 1
+    #             else:
+    #                 self.score = 20
+    #
+    #         self.user.score += self.score
+    #     else:
+    #         self.score = 0
+    #         self.response = 'Wrong'
+    #         self.user.submission_count += 1
+    #     self.user.save()
+    #     super().save(*args, **kwargs)
