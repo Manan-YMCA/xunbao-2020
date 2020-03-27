@@ -9,9 +9,16 @@ import User from "../MainLayout/user";
 import $ from "jquery";
 import Modal from "./modal";
 import Statusmodel from "./Statusmodel";
+const ReactMarkdown = require('react-markdown')
 
 
 class Questionpage extends React.Component {
+  constructor(props){
+    super(props)
+    this.state={
+      content:"",
+    }
+  }
   componentDidMount() {
     var quesno;
     //--------Calling of Question-------------
@@ -32,11 +39,10 @@ class Questionpage extends React.Component {
        "Authorization" :"Bearer " + localStorage.getItem("token")
           
       }
-    }).done(function(data) {
+    }).done((data)=> {
       var obj = JSON.parse(JSON.stringify(data));
       console.log(obj);
-
-      $("#Question").append(obj[0].ques);
+      this.setState({content:obj[0].ques})
       quesno = obj[0].no;
       localStorage.setItem("hintis",obj[0].hint);
         
@@ -120,9 +126,7 @@ class Questionpage extends React.Component {
               <br />
 
               <div id="questiontext">
-                <h1 className="QuestionText" id="Question">
-                  {" "}
-                </h1>
+                <ReactMarkdown source={this.state.content} className="QuestionText" />
                 <div className="col95">
                   <input
                     type="text"
