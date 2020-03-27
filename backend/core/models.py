@@ -41,6 +41,7 @@ class Question(models.Model):
 class HintModel(models.Model):
     ques = models.ForeignKey(Question, on_delete=models.CASCADE, null=True, blank=True)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
+    hint = models.CharField(max_length=100, default=None, blank=True, null=True)
     fid = models.CharField(max_length=100, default=None, blank=True, null=True)
     hintviewed = models.BooleanField(default=True)
 
@@ -51,12 +52,28 @@ class HintModel(models.Model):
         self.user = UserProfile.objects.get(fid=self.fid)
         level = self.user.level
         self.ques = Question.objects.get(no=level)
+        self.hint = self.ques.hint
+        if self.hint.lower() == 'not available':
+            self.hintviewed = False
+        try:
+            prev = HintModel.objects.get(user=self.user, ques=self.ques)
+            prev.delete()
+        except:
+            pass
+
         super().save(*args, **kwargs)
+
+    # class Meta:
+    #     unique_together = ['ques', 'user']
 
 
 class Answer(models.Model):
     ques = models.ForeignKey(Question, on_delete=models.CASCADE)
     answer = models.CharField(max_length=100)
+
+    def save(self, *args, **kwargs):
+        self.answer = self.answer.lower()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return str(self.answer)
@@ -80,18 +97,26 @@ class Submission(models.Model):
         self.user = UserProfile.objects.get(fid=self.fid)
         level = self.user.level
         self.ques = Question.objects.get(no=level)
-        if HintModel.objects.filter(user=self.user, hintviewed=True):
+        if HintModel.objects.filter(user=self.user, ques=self.ques, hintviewed=True):
             self.hintviewed = True
 
         scores = Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=False).values_list('score',
                                                                                                            flat=True)
-        if len(scores):
+        if len(scores) > 0:
             score = min(scores)
-        else:
+
+        elif self.hintviewed == True:
+            if len(scores) >0:
+                score = min(scores) - 19
             if Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=True).values_list('score',
-                                                                                                           flat=True):
-                score = 81
+                                                                                                           flat=True) == 1:
+                scores = Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=True).values_list('score',
+                                                                                                           flat=True)
+                score = min(scores) + 1
+
             else: score = 101
+        else:
+            score = 101
 
         answers = Answer.objects.filter(ques=self.ques).values_list('answer', flat=True)
 

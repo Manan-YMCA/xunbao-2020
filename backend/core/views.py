@@ -41,7 +41,7 @@ class JWTViewSet(viewsets.ViewSet):
     def create(self, request, *args, **kwargs):
         body_unicode = request.body.decode('utf-8')
         body_data = json.loads(body_unicode)
-        token=body_data['input']
+        token = body_data['input']
         try:
             fid = fb_get_fid(token)
             userprofile = UserProfile.objects.get(fid=fid["user_id"])
@@ -95,6 +95,7 @@ class QuestionAPIView(viewsets.ModelViewSet):
     def get_queryset(self):
         id = self.request.user.id
         user = UserProfile.objects.get(id=id)
+        print(user)
         level = user.level
         return Question.objects.filter(no=level)
 
@@ -139,12 +140,15 @@ class HintView(viewsets.ModelViewSet):
     serializer_class = HintSerializer
     queryset = HintModel.objects.all()
 
-    # def create(self, request, *args, **kwargs):
-    #     serializer = self.get_serializer(data=request.data)
-    #     serializer.is_valid(raise_exception=True)
-    #     self.perform_create(serializer)
-    #     headers = self.get_success_headers(serializer.data)
-    #     return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    def list(self, request, *arg, **kwargs):
+        return Response([], status=status.HTTP_200_OK)
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     def get_permissions(self):
         permission_classes = [IsAuthenticated]
