@@ -15,13 +15,13 @@ function AppRouter() {
       <Switch>
       <div className = "AppRouter" >
            <Route exact path="/" component={LoginPage} />
-           <Route path="/MainLayout" component={MainLayout} />
-           <Route path="/Developers" component={Developers}/>
-           <Route path="/Leaderboard" component={Leaderboard}/>
-           <Route path="/Rules" component={Rules}/>
-           <Route path="/StartGame" component={StartGame}/>
-           <Route path="/Questionpage" component={Questionpage}/>
-           <Route path="/Winners" component={Winners}/>
+           <Route path="/home" component={MainLayout} />
+           <Route path="/developers" component={Developers}/>
+           <Route path="/leaderboard" component={Leaderboard}/>
+           <Route path="/rules" component={Rules}/>
+           <Route path="/game" component={StartGame}/>
+           <Route path="/question" component={Questionpage}/>
+           <Route path="/winner" component={Winners}/>
       </div>
       </Switch>
       </Router>
