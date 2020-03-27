@@ -30,6 +30,7 @@ class Question(models.Model):
     ques = models.CharField(max_length=2000)
     hint = models.CharField(max_length=1000)
     no = models.IntegerField(default=1)
+    pic = models.ImageField(upload_to='manan/xunbao2020', blank=True, null=True)
 
     def __str__(self):
         return str(self.no) + ' ' + str(self.ques)
