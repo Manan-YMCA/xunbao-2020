@@ -92,18 +92,23 @@ class Submission(models.Model):
         self.user = UserProfile.objects.get(fid=self.fid)
         level = self.user.level
         self.ques = Question.objects.get(no=level)
-        if HintModel.objects.filter(user=self.user, hintviewed=True):
+        if HintModel.objects.filter(user=self.user, ques=self.ques, hintviewed=True):
             self.hintviewed = True
 
         scores = Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=False).values_list('score',
                                                                                                            flat=True)
-        if len(scores):
+        if len(scores) > 0:
             score = min(scores)
-        else:
+
+        elif self.hintviewed == True:
             if Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=True).values_list('score',
                                                                                                            flat=True):
-                score = 81
+                scores = Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=True).values_list('score',
+                                                                                                           flat=True)
+                score = min(scores) + 1
             else: score = 101
+        else:
+            score = 101
 
         answers = Answer.objects.filter(ques=self.ques).values_list('answer', flat=True)
 
