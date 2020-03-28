@@ -135,6 +135,7 @@ function Questionpage(props) {
                 className="QuestionText"
                 id="Question"
                 source={question}
+                escapeHtml
               />
               <div className="col95">
                 <input
