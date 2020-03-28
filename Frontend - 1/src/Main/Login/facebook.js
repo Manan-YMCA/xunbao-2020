@@ -1,5 +1,6 @@
 import React from "react";
 import FacebookLogin from "react-facebook-login";
+import $ from "jquery";
 
 export default ({ setLogin }) => {
   const responseFacebook = response => {
