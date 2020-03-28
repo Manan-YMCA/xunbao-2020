@@ -83,10 +83,10 @@ class Submission(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, blank=True, null=True)
     # user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     fid = models.CharField(max_length=100, default=None, blank=True, null=True)
-    ques = models.ForeignKey(Question, on_delete=models.CASCADE, default=None, blank=True, null=True)
+    ques = models.ForeignKey(Question, on_delete=models.CASCADE, blank=True, null=True)
     answer = models.CharField(max_length=100)
     date = models.DateTimeField(auto_created=True, auto_now_add=True)
-    score = models.IntegerField(blank=True, null=True)
+    score = models.IntegerField(default=0, blank=True, null=True)
     response = models.CharField(default='Wrong', choices=(('Correct', 'Correct'), ('Wrong', 'Wrong')), max_length=10)
     hintviewed = models.BooleanField(default=False)
 
@@ -96,6 +96,7 @@ class Submission(models.Model):
     def save(self, *args, **kwargs):
         # self.user = UserProfile.objects.get(fid=self.fid)
         level = self.user.level
+        self.fid = self.user.fid
         self.ques = Question.objects.get(no=level)
         if HintModel.objects.filter(user=self.user, ques=self.ques, hintviewed=True):
             self.hintviewed = True
