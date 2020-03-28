@@ -107,13 +107,14 @@ class Submission(models.Model):
         scores_with_hint = Submission.objects.filter(ques=self.ques, response='Correct', hintviewed=True).values_list('score',flat=True)
 
         if len(scores_without_hint) == 0:
-            score_hint = 101
+            score_no_hint = 101
+        else:
+            score_no_hint = min(scores_without_hint)
+
+        if len(scores_with_hint) == 0:
+            score_hint = 85
         else:
             score_hint = min(scores_with_hint)
-        if len(scores_with_hint) == 0:
-            score_no_hint = 85
-        else:
-            score_no_hint = min(scores_with_hint)
 
         answers = Answer.objects.filter(ques=self.ques).values_list('answer', flat=True)
 
