@@ -13,7 +13,7 @@ const LowerMobile = () => {
         </div>
 
         <div className="col3 hideMobile">
-                    <Link to='/home'>
+                    <Link to='/'>
         <img src={require('./mobicons/home_button.png')} className="mobileiconscsslower" />
         </Link>
         </div>
