@@ -7,6 +7,7 @@ import Rules from "./Rules/Rules";
 import StartGame from "./StartGame/StartGame";
 import Questionpage from "./QuestionPage/Questionpage";
 import Winners from "./Winners/Winners";
+import comingsoon from "./comingsoon/comingsoon";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function AppRouter() {
@@ -15,7 +16,8 @@ function AppRouter() {
     <Router>
       <Switch>
         <div className="AppRouter">
-          <Route path="/" exact exact component={MainLayout} />
+          <Route path="/" exact exact component={comingsoon} />
+          <Route path="/MainLayout" exact exact component={MainLayout} />
           <Route path="/developers" exact component={Developers} />
           <Route path="/leaderboard" exact component={Leaderboard} />
           <Route path="/rules" exact component={Rules} />
