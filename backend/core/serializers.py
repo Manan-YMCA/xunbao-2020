@@ -15,38 +15,28 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = "__all__"
 
 
-class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
+class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
         fields = "__all__"
 
 
-class QuestionSerializer(serializers.HyperlinkedModelSerializer):
+class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
         fields = ("ques", "no")
 
 
-class SubmissionSerializer(serializers.HyperlinkedModelSerializer):
+class SubmissionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Submission
         fields = "__all__"
 
-    # def create(self, validated_data):
-    #     tmp_post = validated_data
-    #     submission = Submission.objects.create(
-    #         fid=tmp_post['fid'],
-    #         ques=tmp_post['ques'],
-    #         answer=tmp_post['answer'],
-    #     )
-    #
-    #     return submission
 
-
-class HintSerializer(serializers.HyperlinkedModelSerializer):
+class HintSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HintModel

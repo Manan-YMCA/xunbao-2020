@@ -11,17 +11,14 @@ from .serializers import UserSerializer, SubmissionSerializer, QuestionSerialize
 from .models import Question, Submission, UserProfile, HintModel
 import requests
 
+
 def fb_get_fid(input_token):
     URL = "https://graph.facebook.com/debug_token"
-    # input_token = 'EAALjHcMKUWYBAHCYrkJ7hNWw2OP2PK9jNvc6e8vJd8XNTgpMX5luXRbwulcCgGxEdDRLqSdVcaca0hr32aDiVZB0sbtTuhmGVXbZCYZBbMJDhIeD0gXvGpEPJR5U32bfGZAqNFN9eAStF1zF1S51HPO7nwC1MFWDocxZC158ZCN7DHfFdDgnzrOAZASgiK6ZC4DyMfFidx73UmVhjSSXnoiGuvlBaGutxgZAZCbI7SIhoXBQZDZD'
-    # access_token = '241747366815022|i6piESu2cds_1NVd4Kl_g_uw_PM'
-
     access_token = '206217843919244|EKo744gwUQJD-NBySyKd-1IUrRM'
     PARAMS = {'input_token': input_token, 'access_token': access_token}
     r = requests.get(url=URL, params=PARAMS)
     data = r.json()
     return data["data"]
-
 
 
 def get_token(user):
@@ -84,7 +81,7 @@ class LeaderboardAPIViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
 
     def get_permissions(self):
-        permission_classes = [IsAuthenticated]
+        permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
 
 
@@ -95,7 +92,6 @@ class QuestionAPIView(viewsets.ModelViewSet):
     def get_queryset(self):
         id = self.request.user.id
         user = UserProfile.objects.get(id=id)
-        print(user)
         level = user.level
         return Question.objects.filter(no=level)
 
@@ -112,23 +108,11 @@ class SubmissionAPIView(viewsets.ModelViewSet):
         permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
-    # def get_queryset(self):
-    #
-    #     token = self.request.query_params.get('token', None)
-    #     fid = fb_get_fid(token)
-    #     user = UserProfile.objects.get(fid=fid)
-    #     level = user.level
-    #     return Question.objects.filter(no=level)
-
-    # def create(self, request, *args, **kwargs):
-    #     context = {'request': request}
-    #     serializer = SubmissionSerializer(context, data=request.data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
     def create(self, request, *args, **kwargs):
+        data = request.data
+        id = self.request.user.id
+        user = UserProfile.objects.get(id=id)
+        data['user'] = user.id
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
@@ -144,7 +128,11 @@ class HintView(viewsets.ModelViewSet):
         return Response([], status=status.HTTP_200_OK)
 
     def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
+        data = request.data
+        id = self.request.user.id
+        user = UserProfile.objects.get(id=id)
+        data['user'] = user.id
+        serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
