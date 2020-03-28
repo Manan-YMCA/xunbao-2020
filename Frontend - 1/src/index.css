@@ -427,8 +427,9 @@ img {
 #modeltexthint {
   text-align: center;
   color: rgb(41, 128, 226);
-  font-family: Geomancy Extra Bold;
+  font-family: 'Ubuntu', sans-serif;
   font-size: 2rem;
+  font-weight: bold;
 
 
 }
@@ -436,15 +437,17 @@ img {
 #statustext {
   text-align: center;
   color: rgb(17, 224, 62);
-  font-family: Geomancy Extra Bold;
+  font-family: 'Ubuntu', sans-serif;
   font-size: 2rem;
+  font-weight: bold;
 }
 
 .wronganswertext {
   text-align: center;
   color: rgba(247, 38, 38, 0.904);
-  font-family: Geomancy Extra Bold;
+  font-family: 'Ubuntu', sans-serif;
   font-size: 2rem;
+  font-weight: bold;
 }
 
 
@@ -813,14 +816,14 @@ img {
   #statustext {
     text-align: center;
     color: rgb(17, 224, 62);
-    font-family: Geomancy Extra Bold;
+    font-family: 'Ubuntu', sans-serif;
     font-size: 1.4rem;
   }
 
   .wronganswertext {
     text-align: center;
     color: rgba(247, 38, 38, 0.904);
-    font-family: Geomancy Extra Bold;
+    font-family: 'Ubuntu', sans-serif;
     font-size: 1.4rem;
   }
 
