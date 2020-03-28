@@ -133,7 +133,7 @@ class Submission(models.Model):
             elif self.hintviewed:
                 score = min(score_no_hint, score_hint) - 5
             else:
-                score = min(max_score, scores_without_hint) - 1
+                score = min(max_score, score_no_hint) - 1
 
             if score < 20:
                 score = 20
