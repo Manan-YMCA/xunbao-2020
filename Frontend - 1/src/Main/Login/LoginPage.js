@@ -5,27 +5,6 @@ import { Link } from "react-router-dom";
 import Facebook from "./facebook";
 
 class LoginPage extends React.Component {
-  componentDidMount() {
-    //--------Posting Fb Details-----------------
-    if (localStorage.getItem("token")) return;
-    $.ajax({
-      url: "https://mananxunbao.herokuapp.com/api/userprofile/",
-      type: "POST",
-      crossDomain: true,
-      dataType: "json",
-
-      data: JSON.stringify({
-        name: localStorage.getItem("fullname"),
-        pic: localStorage.getItem("userimg"),
-        fid: localStorage.getItem("facebookid")
-      }),
-      contentType: "application/json",
-      success: function(data) {
-        console.log("success posting");
-      }
-    });
-  }
-
   render() {
     return (
       <div className="login page" className="mobilecolumn">

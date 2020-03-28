@@ -10,30 +10,6 @@ import $ from "jquery";
 import User from "./user";
 import Usertext from "./usertext";
 class MainLayout extends React.Component {
-  componentDidMount() {
-    //--------Getting token-----------------
-    if (localStorage.getItem("token")) return;
-    $.ajax({
-      url: "https://mananxunbao.herokuapp.com/api/jwt/",
-      type: "POST",
-      crossDomain: true,
-      dataType: "json",
-      contentType: "application/json; charset=utf-8",
-      cache: false,
-      data: JSON.stringify({
-        input: localStorage.getItem("fbtoken")
-      }),
-      contentType: "application/json",
-      success: function(data) {
-        var tokenis = data.access.access;
-        localStorage.setItem("token", tokenis);
-          
-      },
-      error: function() {
-        console.log("error");
-      }
-    });
-  }
   render() {
     return (
       <div className="main-layout" className="mobilecolumn">

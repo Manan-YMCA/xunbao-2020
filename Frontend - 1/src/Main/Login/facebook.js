@@ -8,7 +8,63 @@ export default ({ setLogin }) => {
     localStorage.setItem("facebookid", response.userID);
     localStorage.setItem("fbtoken", response.accessToken);
     localStorage.setItem("emil", response.email);
-    setLogin(true);
+    $.ajax({
+      url: "https://mananxunbao.herokuapp.com/api/userprofile/",
+      type: "POST",
+      crossDomain: true,
+      dataType: "json",
+
+      data: JSON.stringify({
+        name: localStorage.getItem("fullname"),
+        pic: localStorage.getItem("userimg"),
+        fid: localStorage.getItem("facebookid")
+      }),
+      contentType: "application/json",
+      success: function(data) {
+        $.ajax({
+          url: "https://mananxunbao.herokuapp.com/api/jwt/",
+          type: "POST",
+          crossDomain: true,
+          dataType: "json",
+          contentType: "application/json; charset=utf-8",
+          cache: false,
+          data: JSON.stringify({
+            input: localStorage.getItem("fbtoken")
+          }),
+          contentType: "application/json",
+          success: function(data) {
+            var tokenis = data.access.access;
+            localStorage.setItem("token", tokenis);
+            setLogin(true);
+          },
+          error: function() {
+            console.log("error");
+          }
+        });
+      },
+      error: () => {
+        $.ajax({
+          url: "https://mananxunbao.herokuapp.com/api/jwt/",
+          type: "POST",
+          crossDomain: true,
+          dataType: "json",
+          contentType: "application/json; charset=utf-8",
+          cache: false,
+          data: JSON.stringify({
+            input: localStorage.getItem("fbtoken")
+          }),
+          contentType: "application/json",
+          success: function(data) {
+            var tokenis = data.access.access;
+            localStorage.setItem("token", tokenis);
+            setLogin(true);
+          },
+          error: function() {
+            console.log("error");
+          }
+        });
+      }
+    });
   };
   return (
     <div className="my-facebook-button-class">
