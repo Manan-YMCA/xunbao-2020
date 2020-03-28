@@ -27,6 +27,7 @@ class MainLayout extends React.Component {
       success: function(data) {
         var tokenis = data.access.access;
         localStorage.setItem("token", tokenis);
+          
       },
       error: function() {
         console.log("error");
@@ -66,7 +67,7 @@ class MainLayout extends React.Component {
               src={require("../icons/on_li_tr_hnt.png")}
               className="xunbaoText"
             />
-            <Link to="../StartGame/StartGame">
+            <Link to="/game">
               <img
                 src={require("../icons/play gold.png")}
                 className="startButton"

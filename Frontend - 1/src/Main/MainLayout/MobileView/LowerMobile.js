@@ -7,13 +7,13 @@ const LowerMobile = () => {
         
         <div class="row">
         <div className="col3 hideMobile" >
-        <Link to='./Rules'>
+        <Link to='/rules'>
         <img src={require('./mobicons/rules.png')} className="mobileiconscsslower" />
         </Link>
         </div>
 
         <div className="col3 hideMobile">
-                    <Link to='../MainLayout/MainLayout'>
+                    <Link to='/home'>
         <img src={require('./mobicons/home_button.png')} className="mobileiconscsslower" />
         </Link>
         </div>

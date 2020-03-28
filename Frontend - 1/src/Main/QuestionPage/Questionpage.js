@@ -56,11 +56,13 @@ function Questionpage(props) {
       },
       data: JSON.stringify({
         fid: localStorage.getItem("facebookid"),
-        answer: answer,
-        ques: localStorage.getItem("quesurl")
+        answer: answer
+        
       }),
       complete: function(data) {
         var statusis = data.responseJSON;
+          console.log(statusis.response);
+          
         setAbuse(false);
         setQuestion("loading");
         //------------Right Answer------------------

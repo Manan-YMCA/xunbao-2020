@@ -37,6 +37,7 @@ body {
   src: local('Geomancy Extra Bold'), url('Geomancy - Extra Bold.woff') format('woff');
 }
 
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -359,10 +360,11 @@ img {
 
 .QuestionText {
   color: #Fda212;
-  font-family: Geomancy Extra Bold;
+  font-family: 'Ubuntu', sans-serif;
   font-size: 1.7rem;
   text-align: center;
   margin-top: 1rem;
+  font-weight: 800;
 }
 
 #AnswerField {
@@ -373,7 +375,7 @@ img {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  /*---font-family: Geomancy Extra Bold;*/
+  font-family: 'Ubuntu', sans-serif;
   font-weight: 900;
   margin-top: 1.5rem;
 
@@ -744,10 +746,11 @@ img {
 
   .QuestionText {
     color: #Fda212;
-    font-family: Geomancy Extra Bold;
+    font-family: 'Ubuntu', sans-serif;
     font-size: 1rem;
     text-align: center;
     margin-top: 1rem;
+    font-weight: bold;
   }
 
   .hint_button {
@@ -788,6 +791,8 @@ img {
     box-sizing: border-box;
     font-weight: 600;
     margin-top: 1.5rem;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
 
   }
 

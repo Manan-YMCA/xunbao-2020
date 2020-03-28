@@ -4,13 +4,16 @@ import { useHistory } from "react-router-dom";
 
 export default () => {
   const history = useHistory();
+    
+  
+    
   const responseFacebook = response => {
     history.push("/home");
     localStorage.setItem("fullname", response.name);
     localStorage.setItem("userimg", response.picture.data.url);
     localStorage.setItem("facebookid", response.userID);
     localStorage.setItem("fbtoken", response.accessToken);
-    localStorage.setItem("emil", response.email);
+    localStorage.setItem("emil", response.email);  
   };
   return (
     <div className="my-facebook-button-class">

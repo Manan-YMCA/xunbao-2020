@@ -22,14 +22,14 @@ const Rules = () => {
         
         
         <ol className="RulesList">
-        <li>For every wrong answer their is negative marking</li>
         <li>Every time someone befores you gets right answer the max points of that question lowers</li>
-        <li>Every hint lowers the max points of that question to 30</li>
-        <li>A question can have multiple answers with different weightage</li>
+        <li>Using hint will cause one to lose points</li>
+        <li>A question can have multiple answers</li>
         <li>No two persons can have same points for same question</li>
-        <li>Minimum point on a right answer is 30</li>
+        <li>Minimum point on a right answer is 20</li>
         <li>Maximum points for a right answer are 100</li>
         <li>You can get less than max points</li>
+        
         </ol>
         
         
