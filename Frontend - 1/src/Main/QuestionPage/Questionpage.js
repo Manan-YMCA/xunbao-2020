@@ -135,7 +135,7 @@ function Questionpage(props) {
                 className="QuestionText"
                 id="Question"
                 source={question}
-                escapeHtml
+                escapeHtml={false}
               />
               <div className="col95">
                 <input
