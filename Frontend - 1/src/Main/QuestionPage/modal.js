@@ -1,28 +1,7 @@
 import React, { useState } from "react";
 import $ from "jquery";
 
-function Modal({ id }) {
-  const [hint, setHint] = useState("");
-  React.useEffect(() => {
-    $.ajax({
-      url: "https://mananxunbao.herokuapp.com/api/hint/",
-      type: "POST",
-      crossDomain: true,
-      dataType: "json",
-      contentType: "application/json; charset=utf-8",
-      cache: false,
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token")
-      },
-      data: JSON.stringify({
-        fid: localStorage.getItem("facebookid")
-      }),
-      complete: function(data) {
-        setHint("Waiting from backend");
-      }
-    });
-  }, [id]);
-
+function Modal({ hint, handleHint }) {
   return (
     <div>
       <button
@@ -33,6 +12,7 @@ function Modal({ id }) {
         id="myBtn"
         data-placement="right"
         title="Hint will cost you 20 points"
+        onClick={handleHint}
       ></button>
 
       <div

@@ -47,7 +47,7 @@ class LoginPage extends React.Component {
               className="xunbaoText"
             />
 
-            <Facebook />
+            <Facebook setLogin={this.props.setLogin} />
           </div>
         </div>
       </div>

@@ -17,6 +17,8 @@ function Questionpage(props) {
   const [answer, setAnswer] = React.useState("");
   const [abuse, setAbuse] = React.useState(false);
   const [text, setText] = React.useState("");
+  const [id, setId] = React.useState(false);
+  const [hint, setHint] = React.useState("Loading...");
   React.useEffect(() => {
     var quesno;
     if (quesno > 30) {
@@ -38,10 +40,28 @@ function Questionpage(props) {
         var obj = JSON.parse(JSON.stringify(data));
         setQuestion(obj[0].ques);
         quesno = obj[0].no;
-        localStorage.setItem("hintis", obj[0].hint);
       });
     }
   }, [question]);
+  const handleHint = () => {
+    $.ajax({
+      url: "https://mananxunbao.herokuapp.com/api/hint/",
+      type: "POST",
+      crossDomain: true,
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      cache: false,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token")
+      },
+      data: JSON.stringify({
+        fid: localStorage.getItem("facebookid")
+      }),
+      complete: function(data) {
+        if (data.responseJSON) setHint(data.responseJSON.hint);
+      }
+    });
+  };
   const handleSubmit = () => {
     setText("");
     $.ajax({
@@ -57,19 +77,16 @@ function Questionpage(props) {
       data: JSON.stringify({
         fid: localStorage.getItem("facebookid"),
         answer: answer
-        
       }),
       complete: function(data) {
         var statusis = data.responseJSON;
-          console.log(statusis.response);
-          
         setAbuse(false);
-        setQuestion("loading");
         //------------Right Answer------------------
 
-        if (statusis && statusis.response !== "Wrong") {
+        if (statusis && statusis.response === "Correct") {
           setAbuse(false);
           setText("Well Done! Correct");
+          setQuestion("loading");
         } else {
           //------------Wrong Answer Abuses------------------
 
@@ -129,7 +146,7 @@ function Questionpage(props) {
                 />
               </div>
               <div className="col555">
-                <Modal />
+                <Modal hint={hint} handleHint={handleHint} />
               </div>
             </div>
 
