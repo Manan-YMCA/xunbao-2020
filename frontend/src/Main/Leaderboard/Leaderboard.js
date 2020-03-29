@@ -26,6 +26,12 @@ class Leaderboard extends React.Component {
           `
 
             <div class="row">
+            <div class="col5">     
+
+        <h1 class="LeaderboardText" >` +
+          (i + 1) +
+          ` </h1>
+        </div>
         <div class="col5">     
 
         <h1 class="LeaderboardText" >` +
@@ -37,6 +43,11 @@ class Leaderboard extends React.Component {
           obj[i].pic +
           `" />
 
+        </div>
+        <div class="col5">
+        <h1 class="LeaderboardText"> ` +
+          obj[i].level +
+          `</h1>
         </div>
         <div class="col5">
         <h1 class="LeaderboardText" >` +
@@ -75,14 +86,17 @@ class Leaderboard extends React.Component {
               <br />
               <div class="row">
                 <div className="col5" id="details">
+                  <h1 className="LeaderboardHeading"> Rank </h1>
+                </div>
+                <div className="col5" id="details">
                   <h1 className="LeaderboardHeading"> Name </h1>
                 </div>
                 <div className="col5" id="details">
                   <h1 className="LeaderboardHeading"> Pic </h1>
                 </div>
-                {/* <div className="col5">
+                <div className="col5">
                   <h1 className="LeaderboardHeading"> Level </h1>
-                </div> */}
+                </div>
                 <div className="col5">
                   <h1 className="LeaderboardHeading"> Score </h1>
                 </div>
