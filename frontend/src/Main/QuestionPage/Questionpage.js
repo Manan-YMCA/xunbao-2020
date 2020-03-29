@@ -17,7 +17,7 @@ function Questionpage(props) {
   const [answer, setAnswer] = React.useState("");
   const [abuse, setAbuse] = React.useState(false);
   const [text, setText] = React.useState("");
-  const [id, setId] = React.useState(false);
+  const [thanks, setThanks] = React.useState(false);
   const [hint, setHint] = React.useState("Loading...");
   React.useEffect(() => {
     var quesno;
@@ -63,7 +63,8 @@ function Questionpage(props) {
     });
   };
   const handleSubmit = () => {
-    setText("");
+    setText("Loading.....");
+    setAbuse(false);
     $.ajax({
       url: "https://mananxunbao.herokuapp.com/api/submission/",
       type: "POST",
@@ -80,13 +81,13 @@ function Questionpage(props) {
       }),
       complete: function(data) {
         var statusis = data.responseJSON;
-        setAbuse(false);
         //------------Right Answer------------------
 
         if (statusis && statusis.response === "Correct") {
           setAbuse(false);
           setText("Well Done! Correct");
           setQuestion("loading");
+          setAnswer("");
         } else {
           //------------Wrong Answer Abuses------------------
 
@@ -137,18 +138,24 @@ function Questionpage(props) {
                 source={question}
                 escapeHtml={false}
               />
-              <div className="col95">
-                <input
-                  type="text"
-                  id="AnswerField"
-                  name="Answerield"
-                  placeholder="Your Answer"
-                  onChange={e => setAnswer(e.target.value)}
-                />
-              </div>
-              <div className="col555">
-                <Modal hint={hint} handleHint={handleHint} />
-              </div>
+              {!thanks ? (
+                <>
+                  <div className="col95">
+                    <input
+                      type="text"
+                      id="AnswerField"
+                      name="Answerield"
+                      placeholder="Your Answer"
+                      onChange={e => setAnswer(e.target.value)}
+                    />
+                  </div>
+                  <div className="col555">
+                    <Modal hint={hint} handleHint={handleHint} />
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
             </div>
 
             <Statusmodel handlSubmit={handleSubmit} abuse={abuse} text={text} />
