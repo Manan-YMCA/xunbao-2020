@@ -19,10 +19,13 @@ const Rules = () => {
           <div className="RulesContainer">
             <ol className="RulesList">
               <li>
-                Every time someone befores you gets right answer the max points
-                of that question lowers
+                Everytime, someone before you, gets a right answer, the maximum
+                score for that question lowers.
               </li>
-              <li>Everytime, someone before you gets the right a answer, the maximum point of that question lowers. </li>
+              <li>
+                Everytime, someone before you gets the right a answer, the
+                maximum point of that question lowers.{" "}
+              </li>
               <li>Usage of hints will cost you some points.</li>
               <li>A question can have multiple answers.</li>
               <li>Minimum marks for a question are 20</li>
