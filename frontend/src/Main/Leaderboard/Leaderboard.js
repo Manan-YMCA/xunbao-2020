@@ -29,33 +29,30 @@ class Leaderboard extends React.Component {
             <div class="col5">     
 
         <h1 class="LeaderboardText" >` +
-            (i + 1) +
-            ` </h1>
+          (i + 1) +
+          ` </h1>
         </div>
         <div class="col5">     
 
         <h1 class="LeaderboardText" >` +
-            obj[i].name +
-            ` </h1>
+          obj[i].name +
+          ` </h1>
         </div>
         <div class="col5">     
         <img class="Leaderboardpic" src="` +
-            obj[i].pic +
-            `" />
+          obj[i].pic +
+          `" />
 
         </div>
         <div class="col5">
         <h1 class="LeaderboardText"> ` +
-            obj[i].level >
-          60
-            ? "Banned"
-            : obj[i].level +
-              `</h1>
+          (obj[i].level > 60 ? "Banned" : obj[i].level) +
+          `</h1>
         </div>
         <div class="col5">
         <h1 class="LeaderboardText" >` +
-              obj[i].score +
-              `</h1>
+          obj[i].score +
+          `</h1>
         </div>
         </div>
 
