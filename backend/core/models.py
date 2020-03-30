@@ -130,7 +130,7 @@ class Submission(models.Model):
             #### Marking Scheme ####
 
             if CheckHappyHour(start, now, end):
-                score = 100
+                score = 80
             elif self.hintviewed:
                 score = min(score_no_hint, score_hint) - 5
             else:
