@@ -84,6 +84,10 @@ class LeaderboardAPIViewSet(viewsets.ModelViewSet):
         permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
+    def create(self, request, *args, **kwargs):
+
+        return Response([], status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
+
 
 class QuestionAPIView(viewsets.ModelViewSet):
     serializer_class = QuestionSerializer
@@ -105,7 +109,7 @@ class SubmissionAPIView(viewsets.ModelViewSet):
     queryset = Submission.objects.all()
 
     def list(self, request, *arg, **kwargs):
-        return Response([], status=status.HTTP_200_OK)
+        return Response([], status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
 
     def get_permissions(self):
         permission_classes = [IsAuthenticated]
@@ -128,7 +132,7 @@ class HintView(viewsets.ModelViewSet):
     queryset = HintModel.objects.all()
 
     def list(self, request, *arg, **kwargs):
-        return Response([], status=status.HTTP_200_OK)
+        return Response([], status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
 
     def create(self, request, *args, **kwargs):
         data = request.data
