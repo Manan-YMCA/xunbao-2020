@@ -104,6 +104,9 @@ class SubmissionAPIView(viewsets.ModelViewSet):
     serializer_class = SubmissionSerializer
     queryset = Submission.objects.all()
 
+    def list(self, request, *arg, **kwargs):
+        return Response([], status=status.HTTP_200_OK)
+
     def get_permissions(self):
         permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
