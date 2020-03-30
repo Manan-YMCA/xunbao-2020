@@ -147,6 +147,7 @@ function Questionpage(props) {
                       name="Answerield"
                       placeholder="Your Answer"
                       onChange={e => setAnswer(e.target.value)}
+                      value={answer}
                     />
                   </div>
                   <div className="col555">
