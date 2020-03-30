@@ -22,12 +22,12 @@ const Rules = () => {
                 Every time someone befores you gets right answer the max points
                 of that question lowers
               </li>
-              <li>Using hint will cause one to lose points</li>
-              <li>A question can have multiple answers</li>
-              <li>No two persons can have same points for same question</li>
-              <li>Minimum point on a right answer is 20</li>
-              <li>Maximum points for a right answer are 100</li>
-              <li>You can get less than max points</li>
+              <li>Everytime, someone before you gets the right a answer, the maximum point of that question lowers. </li>
+              <li>Usage of hints will cost you some points.</li>
+              <li>A question can have multiple answers.</li>
+              <li>Minimum marks for a question are 20</li>
+              <li>Maximum marks for a question are 100</li>
+              <li>Their is no negative marking</li>
             </ol>
           </div>
         </div>
