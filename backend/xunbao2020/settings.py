@@ -33,7 +33,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$%6u%b02#8w5%kj^uuvft)u-i6bhhgusgk)3!5xna$nejgmvot'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['https://mananxunbao.herokuapp.com/', 'https://xunbao.elementsculmyca.com/']
 
