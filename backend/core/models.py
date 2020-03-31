@@ -20,6 +20,9 @@ class UserProfile(models.Model):
 
 
 def CheckHappyHour(start, now, end):
+    # print(now)
+    # print(start)
+    # print("333333333333333333333333333333333333333333333333333333333333333333")
     for i in range(len(start)):
         if start[i] <= now <= end[i]:
             return True
