@@ -21,7 +21,7 @@ function Questionpage(props) {
   const [hint, setHint] = React.useState("Loading...");
   React.useEffect(() => {
     var quesno;
-    if (quesno > 25) {
+    if (quesno > 35) {
       history.push("/winner");
     } else {
       $.ajax({

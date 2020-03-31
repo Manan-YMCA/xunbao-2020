@@ -30,8 +30,7 @@ class Winners extends React.Component {
          <img src = {
             require('../icons/on_li_tr_hnt.png')} className = "xunbaoText" / >
                 
-         <img src = {
-            require('../icons/winner.png')} className = "xunbaoText" / >
+        <p className="thanks">Thanks for playing</p>
           
       </div>
         </div>

@@ -15,6 +15,19 @@
   margin-top: 3rem;
 }
 
+/*===========Winner Page=========== */
+.thanks {
+  color: white;
+  font-family: Geomancy Extra Bold;
+  font-size: 6rem;
+  text-align: center;
+  margin-top: 1rem;
+
+
+}
+
+
+
 /*===========Main Page=========== */
 
 html {
@@ -836,5 +849,15 @@ img {
     overflow-y: scroll;
     overflow-x: hidden;
     margin-bottom: 25px;
+  }
+
+  .thanks {
+    color: white;
+    font-family: Geomancy Extra Bold;
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+
+
   }
 }
