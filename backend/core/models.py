@@ -129,7 +129,7 @@ class Submission(models.Model):
 
             #### Marking Scheme ####
 
-            if CheckHappyHour(start, now, end) and self.ques.no<17:
+            if CheckHappyHour(start, now, end) and self.ques.no<16:
                 score = 80
             else:
                 if self.hintviewed:
