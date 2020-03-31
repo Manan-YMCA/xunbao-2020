@@ -119,9 +119,6 @@ class Submission(models.Model):
         answers = Answer.objects.filter(ques=self.ques).values_list('answer', flat=True)
 
         if self.answer.lower() in answers and self.user.submission_count <= 2500:
-            self.response = 'Correct'
-            self.user.level += 1
-            self.user.submission_count += 1
 
             start = HappyHour.objects.all().values_list('start', flat=True)
             end = HappyHour.objects.all().values_list('end', flat=True)
@@ -131,15 +128,19 @@ class Submission(models.Model):
 
             if CheckHappyHour(start, now, end):
                 score = 80
-            elif self.hintviewed:
-                score = min(score_no_hint, score_hint) - 5
             else:
-                score = min(max_score, score_no_hint) - 1
+                if self.hintviewed:
+                    score = min(score_no_hint, score_hint) - 5
+                else:
+                    score = min(max_score, score_no_hint) - 1
 
             if score < 20:
                 score = 20
             self.score = score
             self.user.score += self.score
+            self.response = 'Correct'
+            self.user.level += 1
+            self.user.submission_count += 1
         else:
             self.score = 0
             self.response = 'Wrong'
