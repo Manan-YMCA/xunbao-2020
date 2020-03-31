@@ -31,7 +31,7 @@ def CheckHappyHour(start, now, end):
 
 class Question(models.Model):
     ques = models.CharField(max_length=2000)
-    hint = models.CharField(max_length=1000)
+    hint = models.CharField(max_length=10000)
     no = models.IntegerField(default=1)
 
     def __str__(self):
@@ -44,7 +44,7 @@ class Question(models.Model):
 class HintModel(models.Model):
     ques = models.ForeignKey(Question, on_delete=models.CASCADE, null=True, blank=True)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
-    hint = models.CharField(max_length=100, default=None, blank=True, null=True)
+    hint = models.CharField(max_length=10000, default=None, blank=True, null=True)
     fid = models.CharField(max_length=100, default=None, blank=True, null=True)
     hintviewed = models.BooleanField(default=True)
 
@@ -72,7 +72,7 @@ class HintModel(models.Model):
 
 class Answer(models.Model):
     ques = models.ForeignKey(Question, on_delete=models.CASCADE)
-    answer = models.CharField(max_length=100)
+    answer = models.CharField(max_length=10000)
 
     def save(self, *args, **kwargs):
         self.answer = self.answer.lower()
@@ -87,7 +87,7 @@ class Submission(models.Model):
     # user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     fid = models.CharField(max_length=100, default=None, blank=True, null=True)
     ques = models.ForeignKey(Question, on_delete=models.CASCADE, blank=True, null=True)
-    answer = models.CharField(max_length=100)
+    answer = models.CharField(max_length=10000)
     date = models.DateTimeField(auto_created=True, auto_now_add=True)
     score = models.IntegerField(default=0, blank=True, null=True)
     response = models.CharField(default='Wrong', choices=(('Correct', 'Correct'), ('Wrong', 'Wrong')), max_length=10)
