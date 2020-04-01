@@ -19,11 +19,32 @@ function Questionpage(props) {
   const [text, setText] = React.useState("");
   const [thanks, setThanks] = React.useState(false);
   const [hint, setHint] = React.useState("Loading...");
-  React.useEffect(() => {
+    
     var quesno;
-    if (quesno > 35) {
-      history.push("/winner");
-    } else {
+    $.ajax({
+        url:
+          "https://mananxunbao.herokuapp.com/api/question/?fid=" +
+          localStorage.getItem("facebookid"),
+        type: "GET",
+        crossDomain: true,
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        cache: false,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
+      }).done(data => {
+        var obj = JSON.parse(JSON.stringify(data));
+        quesno = obj[0].no;
+        console.log(quesno);
+        if(quesno>35){
+         history.push("./winner");
+         }
+      });
+      
+      
+  React.useEffect(() => {
+    
       $.ajax({
         url:
           "https://mananxunbao.herokuapp.com/api/question/?fid=" +
@@ -39,9 +60,9 @@ function Questionpage(props) {
       }).done(data => {
         var obj = JSON.parse(JSON.stringify(data));
         setQuestion(obj[0].ques);
-        quesno = obj[0].no;
+        
       });
-    }
+   
   }, [question]);
   const handleHint = () => {
     $.ajax({
