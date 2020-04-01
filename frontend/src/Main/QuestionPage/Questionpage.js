@@ -37,7 +37,7 @@ function Questionpage(props) {
         var obj = JSON.parse(JSON.stringify(data));
         quesno = obj[0].no;
         console.log(quesno);
-        if(quesno>7){
+        if(quesno>35){
          history.push("./winner");
          }
       });
