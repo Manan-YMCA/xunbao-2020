@@ -319,13 +319,23 @@ img {
 
 
 /*===========Leaderboard Page=========== */
+.Learedboardfinish {
+  color: rgb(29, 196, 126);
+  font-family: Geomancy Extra Bold;
+  font-size: 5rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+
 .LeaderboardContainer {
   margin-top: 1rem;
-  background-color: black;
   border-radius: 7%;
   border: 0.4rem solid #Fda212;
   padding: 1.5rem 1.5rem 1.5rem 1.5rem;
   height: 100%;
+  background-image: url("./Main/icons/sky.jpg");
+  background-size: 100%;
 }
 
 .LeaderboardHeading {
@@ -860,4 +870,13 @@ img {
 
 
   }
+
+  .Learedboardfinish {
+    color: red;
+    font-family: Geomancy Extra Bold;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
 }

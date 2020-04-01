@@ -9,7 +9,8 @@ import User from "../MainLayout/user";
 
 class Leaderboard extends React.Component {
   componentDidMount() {
-    $.ajax({
+      
+    /* $.ajax({
       type: "GET",
       crossDomain: true,
       dataType: "json",
@@ -64,7 +65,8 @@ class Leaderboard extends React.Component {
       }
 
       $("#LeaderboardStats").append(details);
-    });
+    }); */
+      
   }
 
   render() {
@@ -85,7 +87,7 @@ class Leaderboard extends React.Component {
               <hr className="Developershr" />
               <br />
               <div class="row">
-                <div className="col5" id="details">
+                {/* <div className="col5" id="details">
                   <h1 className="LeaderboardHeading"> Rank </h1>
                 </div>
                 <div className="col5" id="details">
@@ -99,15 +101,20 @@ class Leaderboard extends React.Component {
                 </div>
                 <div className="col5">
                   <h1 className="LeaderboardHeading"> Score </h1>
-                </div>
-              </div>
+                </div>*/}
+              </div>  
 
               <div id="wrapper">
-                <div class="scrollbar" id="style-2">
-                  <div class="force-overflow">
-                    <div id="LeaderboardStats"></div>
-                  </div>
-                </div>
+                {/*<div class="scrollbar" id="style-2">
+                  <div class="force-overflow">*/}
+                    <div id="LeaderboardStats">
+        <p className="Learedboardfinish">
+                Stay Tuned For Results
+        </p>
+        
+                   </div>
+              {/*    </div>
+                </div>*/}
               </div>
             </div>
           </div>
