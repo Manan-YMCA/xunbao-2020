@@ -3,12 +3,14 @@ import FacebookLogin from "react-facebook-login";
 import $ from "jquery";
 
 export default ({ setLogin }) => {
+    
   const responseFacebook = response => {
     localStorage.setItem("fullname", response.name);
     localStorage.setItem("userimg", response.picture.data.url);
     localStorage.setItem("facebookid", response.userID);
     localStorage.setItem("fbtoken", response.accessToken);
     localStorage.setItem("emil", response.email);
+      
     $.ajax({
       url: "https://mananxunbao.herokuapp.com/api/userprofile/",
       type: "POST",

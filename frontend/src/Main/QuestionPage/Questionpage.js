@@ -101,10 +101,10 @@ function Questionpage(props) {
             "You must have been born on a highway because that's where most accidents happen.",
             "Am I a joke to you?",
             "Yeh kya bawasir bana diye ",
-            "Only two things are infinite-- the universe and your stupidity, and I'm not so sure about the former."
+            "Only two things are infinite-- the universe and your stupidity, and I'm not so sure about the former.","Don’t take yourself so seriously, no one else does.","Stupid!!!!! I’m sorry I hurt your feelings when I called you stupid. I really thought you already knew.","I don’t hate you but I’m just not necessarily excited about your existence.","Zombies eat brains, don’t worry, you’re safe.","After reading this, well I have to go now because I'm due back on the planet earth.","Keep rolling your eyes, maybe you’ll find a brain back there.","Light travels faster than sound. This is why some people appear bright until they guess the answer.","If I wanted to kill myself I would climb your ego and jump to your IQ.","You must have been born on a highway because that’s where most accidents happen.","If common sense is common why are you without it?"
           ];
 
-          var num = Math.floor(Math.random() * 10);
+          var num = Math.floor(Math.random() * 19);
           setAbuse(true);
           setText(abusesarr[num]);
         }

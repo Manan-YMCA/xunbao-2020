@@ -81,7 +81,7 @@ class Leaderboard extends React.Component {
           </div>
           <div class="col-md-8">
             <div className="LeaderboardContainer">
-              <h1 className="DevelopersText"> Leadeboard </h1>
+              <h1 className="DevelopersText"> Leaderboard </h1>
               <hr className="Developershr" />
               <br />
               <div class="row">
