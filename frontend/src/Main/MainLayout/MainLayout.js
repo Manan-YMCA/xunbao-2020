@@ -43,7 +43,7 @@ class MainLayout extends React.Component {
               src={require("../icons/on_li_tr_hnt.png")}
               className="xunbaoText"
             />
-            <Link to="/game">
+            <Link to="/winner">
               <img
                 src={require("../icons/play gold.png")}
                 className="startButton"
