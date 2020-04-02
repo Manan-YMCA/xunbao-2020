@@ -9,7 +9,7 @@ from core.views import UserProfileAPIViewSet, UserViewSet, SubmissionAPIView, Qu
 router = DefaultRouter()
 router.register('user', UserViewSet, basename='user')
 router.register('userprofile', UserProfileAPIViewSet, basename='userprofile')
-router.register('question', QuestionAPIView, basename='question')
+# router.register('question', QuestionAPIView, basename='question')
 router.register('submission', SubmissionAPIView, basename='submission')
 router.register('hint', HintView, basename='hintmodel')
 router.register('leaderboard', LeaderboardAPIViewSet, basename='leaderboard')

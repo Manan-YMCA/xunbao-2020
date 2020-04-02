@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a265e6d7-92fd-4a41-9e68-f115e7119282" name="Default Changelist" comment="" />
+    <list default="true" id="a265e6d7-92fd-4a41-9e68-f115e7119282" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/backend/xunbao2020/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/xunbao2020/urls.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -96,6 +98,7 @@
       <workItem from="1585154674124" duration="4775000" />
       <workItem from="1585184601237" duration="14000" />
       <workItem from="1585197772825" duration="10138000" />
+      <workItem from="1585808348758" duration="121000" />
     </task>
     <servers />
   </component>
