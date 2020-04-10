@@ -10,12 +10,12 @@ import Winners from "./Winners/Winners";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function AppRouter() {
-  const [isLogin, setLogin] = React.useState(!!localStorage.getItem("token"));
-  return isLogin ? (
+  
+  return(
     <Router>
       <Switch>
         <div className="AppRouter">
-          <Route path="/" exact exact component={MainLayout} />
+          <Route path="/" exact exact component={Winners} />
           <Route path="/developers" exact component={Developers} />
           <Route path="/leaderboard" exact component={Leaderboard} />
           <Route path="/rules" exact component={Rules} />
@@ -25,8 +25,6 @@ function AppRouter() {
         </div>
       </Switch>
     </Router>
-  ) : (
-    <LoginPage setLogin={setLogin} />
   );
 }
 
