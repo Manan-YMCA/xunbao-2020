@@ -18,22 +18,30 @@ class Winners extends React.Component {
     
         <div className = "login page" className="mobilecolumn">
         <br />
-        <div class="row">
+        
         
         <div className="logincolumn">
         <img src = {
-            require('../icons/xunbao text.png')} className = "xunbaoIcon" / >
+            require('../icons/xunbao text.png')} className = "xunbaoIconwinner" / >
         
-        <img src = {
-            require('../icons/underline.png')} className = "underlineIcon" / >
         
          <img src = {
-            require('../icons/on_li_tr_hnt.png')} className = "xunbaoText" / >
-                
-        <p className="thanks">Thanks for playing, stay tuned for results</p>
+            require('../icons/on_li_tr_hnt.png')} className = "xunbaoTextwinner" / >
+          <img src = {
+            require('../icons/winner.png')} className = "xunbaowinnerpage" / >
+          <div className="row">            
+         <div className="col-sm-6">
+                      <img src={require('../icons/kartik.jpg')} className="WinnerImage"/>
+        <p class="WinnerText">1st<br />Kartik Bhatia</p>
+              
+              </div>
           
-      </div>
-        </div>
+                       <div className="col-sm-6">
+                                   <img src={require('../icons/shivam.jpg')} className="WinnerImage"/>
+        <p class="WinnerText">2nd<br />Shivam Mehla</p>
+              </div>
+      </div></div>
+        
 </div>
 
      );}
