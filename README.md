@@ -29,7 +29,7 @@
 [XUNBAO 2020](https://xunbao.elementsculmyca.com/) is a Quiz WebApp made during Online Culmyca 2020 held at [JC Bose University of Science and Technology](https://jcboseust.ac.in/), developed by members of [Manan - A techno Surge](https://manantechnosurge.com/). We got 300+ Participants and it was loved by all of them. Participants enthusiastically participated in this 3 Day event.
  
 ### Built With
-*   React
+*   ReactJs
 *   Django
 *   Facebook API
 
@@ -38,12 +38,20 @@
 ## Getting Started
 ### Prerequisites
 
-* React
+* ReactJs
 * Python
 * Django
 
 
 ### Installation
+
+
+* Frontend
+
+    ```NodeJs
+    npm i node-modules
+    npm start
+    ```
 
 * Backend
 
@@ -61,6 +69,28 @@
     python3 manage.py createsuperuser
     ```
 [Back to Table of Contents](#table-of-contents)
+
+## Frontend
+
+* #### ReactJs
+    React is an open-source, front end, JavaScript library for building user interfaces or UI components. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications.
+    
+    * ###### Why reactJS ?
+    
+        *  Component-Based
+        *  Declarative 
+        *  Incredibly versatile
+        *  Learn Once, Write Anywhere
+        
+* #### React-Bootstraps
+     React-Bootstrap replaces the Bootstrap JavaScript. Each component has been built from scratch as a true React component, without unneeded dependencies like jQuery. As one of the oldest React libraries, React-Bootstrap has evolved and grown alongside React, making it an excellent choice as your UI foundation.
+
+* #### AJAX
+     You should populate data with AJAX calls in the componentDidMount lifecycle method. This is so you can use setState to update your component when the data is retrieved.
+
+* #### Additional FrontEnd Info
+     The FrontEnd is made by the help of reactJs, AJAX for API calls and CSS. The structure is pretty simple with various components. The info about react tree will can be seen in router.js file.
+
 ## Backend
 
 * #### Django 
@@ -112,6 +142,12 @@
             <img src="https://avatars2.githubusercontent.com/u/44281902?s=400&u=e943101b7644437b9acd95c05ef99406e71dcd68&v=4" width="100px;" alt="" style="border-radius:50%;" /><br />
         </a>
             <br><a href="https://github.com/Manan-YMCA/xunbao-2020/commits?author=aayushme" title="Code">💻<b>Aayush Tyagi</b></a>
+    </td>
+   <td align="center">
+        <a href="https://github.com/aayushme/">
+            <img src="https://avatars2.githubusercontent.com/u/44281902?s=400&u=e943101b7644437b9acd95c05ef99406e71dcd68&v=4" width="100px;" alt="" style="border-radius:50%;" /><br />
+        </a>
+            <br><a href="https://github.com/Manan-YMCA/xunbao-2020/commits?author=aayushme" title="Code">💻<b>Arun</b></a>
     </td>
   </tr>
 </table>
