@@ -144,10 +144,10 @@
             <br><a href="https://github.com/Manan-YMCA/xunbao-2020/commits?author=aayushme" title="Code">💻<b>Aayush Tyagi</b></a>
     </td>
    <td align="center">
-        <a href="https://github.com/aayushme/">
-            <img src="https://avatars2.githubusercontent.com/u/44281902?s=400&u=e943101b7644437b9acd95c05ef99406e71dcd68&v=4" width="100px;" alt="" style="border-radius:50%;" /><br />
+        <a href="https://github.com/cooldude001/">
+            <img src="https://avatars3.githubusercontent.com/u/23423227?s=400&v=4" width="100px;" alt="" style="border-radius:50%;" /><br />
         </a>
-            <br><a href="https://github.com/Manan-YMCA/xunbao-2020/commits?author=aayushme" title="Code">💻<b>Arun</b></a>
+            <br><a href="https://github.com/cooldude001" title="Code">💻<b>Arun</b></a>
     </td>
   </tr>
 </table>
