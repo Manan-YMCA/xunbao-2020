@@ -68,6 +68,14 @@
     ``` python
     python3 manage.py createsuperuser
     ```
+    
+    
+* To Run Server
+
+    ``` python
+    python3 manage.py runserver
+    ```
+    
 [Back to Table of Contents](#table-of-contents)
 
 ## Frontend
