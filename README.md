@@ -85,6 +85,34 @@
 
         * <b>Information Exchange:</b> JSON Web Tokens are a good way of securely transmitting information between parties. Because JWTs can be signed—for example, using public/private key pairs—you can be sure the senders are who they say they are. Additionally, as the signature is calculated using the header and the payload, you can also verify that the content hasn't been tampered with.
 
+* #### Backend Approach
+    For Xunbao we created 6 models/tables.
+
+    * User Profile
+    * Question
+    * Hint
+    * Answer
+    * Submission
+    * Happy Hour
+
+    So before explaining about models and their fields i would like to explain our goal/aim with which we started to make this quiz. We wanted to make Quiz as much interesting as much we can so we focused on 5 main points.
+    * Multiple answers for a question
+    * Full Score in Happy Hour
+    * Hint would be given but some score would be deducted when the participant answers that question
+    * Marking system should be relative to previous correct submissions.
+    * Participant can only move forward question by question.
+    
+    ##### Tables
+    * User Profile - Name, Pic, Score, Level, Submission_count, fid (fb id)
+    * Question - ques, hint, no (index)
+    * Hint - ques, user, hint, fid, hintviewed
+    * Answer - ques, answer
+    * Submission - user, fid, ques, answer, datetime, score, response, hintviewed
+    * Happy hour - start, end
+    
+    Here we used Django Model Viewsets, Model serializer and Default Routers (to handle UI and links for APIs) for APIs and JWT fot token auth.
+    
+
 
 [Back to Table of Contents](#table-of-contents)
 ## Screenshots
